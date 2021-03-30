@@ -35,17 +35,11 @@
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-    $result = $conn->query($sql);
-
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $user = $row['username'];
-        $role = $row['role'];
-        $info = "$user,$role";
-    } else {
-        $info = "FALSE";
-    }
+    if ($conn->query($sql) === TRUE) {
+        echo "\nInsert successfully";
+      } else {
+        echo "\nError: " . $conn->error;
+      }
     $conn->close();
     echo $info;
 ?>

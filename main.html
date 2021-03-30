@@ -19,15 +19,15 @@
                 var greet = document.getElementById("greet");
                 var logged = document.getElementById("logged");
                 var user = localStorage.getItem("user");
-                var role = roles[localStorage.getItem("role")];
                 greet.innerHTML = "Hello " + user;
                 logged.innerHTML = "You are logged in as: " + role;
-                generateButtons();
+                //generateButtons();
             }
 
         </script>
     </head>
     <body onload="greeting()">
+        <script src="validate.js"></script>
         <h2><div id="greet"></div></h2>
         <p><div id="logged"></div></p>
         <div id="buttonDiv"></div>

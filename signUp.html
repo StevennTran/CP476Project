@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome</title>
+        <style>
+            h1, h3, tr, td, p{
+                text-align: center;
+                padding: 6px;
+            }
+            table.center {
+                margin-left: auto; 
+                margin-right: auto;
+            }
+            #errorMsg {
+                text-align: center;
+                color: rgb(243, 39, 39);
+            }
+        </style>
+
+        <script>
+            function checkValid() {
+                var sUsername = document.getElementById("username").value;
+                var sPassword = document.getElementById("password").value;
+                var err = document.getElementById("errorMsg");
+
+                var xhttp = new XMLHttpRequest();
+                
+                xhttp.open("get", "isValid.php?username="+sUsername+"&password="+sPassword, true);
+                xhttp.responseType = 'text';
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4) {
+                        if (xhttp.status == 200) {
+                            if (xhttp.responseText == "FALSE") {
+                                err.innerHTML = "Incorrect Credentials, please try again";
+                            } else {
+                                // This is jQuery
+                                var temp = xhttp.responseText.split(",");
+                                localStorage.setItem("user", temp[0]);
+                                localStorage.setItem("role", temp[1]);
+                                location.href = 'userUI.html';
+                            }
+                        }
+                    }
+                };
+                xhttp.send();
+            }
+        </script>
+
+    </head>
+    <body>
+        <h1>Welcome to the Sign Up Page</h1>
+        <h3>Please Create an Account</h3>
+
+        <table class="center">
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" id="username" value="" size="20"></td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password" id="password" value="" size="20"></td>
+            </tr>
+        </table>
+        <p><input type="button" value="Login" onclick="checkValid()"></p>
+        <div id="errorMsg"></div>
+    </body>
+</html>

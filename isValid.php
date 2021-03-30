@@ -6,7 +6,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "myManageSystem";
+    $dbname = "books";
 
     $conn = new mysqli($servername, $username, $password);
     $sql = "CREATE DATABASE $dbname";

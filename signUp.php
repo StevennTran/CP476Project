@@ -30,16 +30,15 @@
     //create the SQL query string
 
     #$sql = "Select * from users where username='".$sUsername."' AND password='".$sPassword."'";
-    $sql = "INSERT INTO users (username,password,role) VALUES (".$sUsername.",".$sPassword.",1)";
+    $sql = "INSERT INTO users(username,password,role) VALUES ('".$sUsername."','".$sPassword."',1)";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === False) {
         echo "\nInsert successfully";
       } else {
-        echo "\nError: " . $conn->error;
+        echo "FALSE";
       }
     $conn->close();
-    echo $info;
 ?>

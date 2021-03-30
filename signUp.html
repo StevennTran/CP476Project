@@ -25,19 +25,19 @@
 
                 var xhttp = new XMLHttpRequest();
                 
-                xhttp.open("get", "isValid.php?username="+sUsername+"&password="+sPassword, true);
+                xhttp.open("get", "signUp.php?username="+sUsername+"&password="+sPassword, true);
                 xhttp.responseType = 'text';
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4) {
                         if (xhttp.status == 200) {
                             if (xhttp.responseText == "FALSE") {
-                                err.innerHTML = "Incorrect Credentials, please try again";
+                                err.innerHTML = "This user already exists";
                             } else {
                                 // This is jQuery
                                 var temp = xhttp.responseText.split(",");
                                 localStorage.setItem("user", temp[0]);
                                 localStorage.setItem("role", temp[1]);
-                                location.href = 'userUI.html';
+                                location.href = 'login.html';
                             }
                         }
                     }

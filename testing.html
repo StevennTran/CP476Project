@@ -44,10 +44,13 @@
                         if (xhttp.status == 200) {
                             // console.log(xhttp.response);
                             var stringified = JSON.stringify(xhttp.response);
-                            console.log(stringified);
+                            // console.log(stringified);
                             var parsedObj = JSON.parse(stringified);
-                            // temp.innerHTML = parsedObj.items;
-                            console.log(parsedObj.items[0].publisher);
+                            var book = JSON.stringify(parsedObj.items[0].volumeInfo.publisher);
+                            temp.innerHTML = book;
+                            // var parsedObj = JSON.parse(book);
+                            // var bookInfo = JSON.stringify(parsedObj.publisher);
+                            // console.log(bookInfo);
                         }
                     }
                 };

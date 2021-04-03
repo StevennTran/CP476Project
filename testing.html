@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            table.center {
+                margin-left: auto; 
+                margin-right: auto;
+            }
+        </style>
+        <script>
+            var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
+            function callAPi(){
+
+                var title = document.getElementById("title");
+                var title = document.getElementById("author");
+                var title = document.getElementById("title");
+
+                var xhttp = new XMLHttpRequest();
+                
+                xhttp.open("get", "https://www.googleapis.com/books/v1/volumes?q=", true);
+                xhttp.responseType = 'text';
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4) {
+                        if (xhttp.status == 200) {
+                            if (xhttp.responseText == "FALSE") {
+                                err.innerHTML = "Incorrect Credentials, please try again";
+                            } else {
+
+
+                            }
+                        }
+                    }
+                };
+                xhttp.send();
+            }
+        </script>
+    </head>
+    <body>
+        <table class="center">
+            <tr>
+                <td>Title: </td>
+                <td><input type="text" id="title" value="" size="20"></td>
+            </tr>
+            <tr>
+                <td>Author: </td>
+                <td><input type="text" id="author" value="" size="20"></td>
+            </tr>
+            <tr>
+                <td>Publisher: </td>
+                <td><input type="text" id="publisher" value="" size="20"></td>
+            </tr>
+        </table>
+        <div id="information"></div>
+    </body>
+
+
+</html>

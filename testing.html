@@ -42,10 +42,12 @@
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4) {
                         if (xhttp.status == 200) {
-                            console.log(xhttp.response);
-                            // var obj = JSON.parse(xhttp.response);
-                            // temp.innerHTML = obj.items[0].publisher;
-                            // console.log(obj.items[0].publisher);
+                            // console.log(xhttp.response);
+                            var stringified = JSON.stringify(xhttp.response);
+                            console.log(stringified);
+                            var parsedObj = JSON.parse(stringified);
+                            // temp.innerHTML = parsedObj.items;
+                            console.log(parsedObj.items[0].publisher);
                         }
                     }
                 };

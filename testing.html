@@ -12,23 +12,40 @@
             var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
             function callAPi(){
 
-                var title = document.getElementById("title");
-                var title = document.getElementById("author");
-                var title = document.getElementById("title");
+                var title = document.getElementById("title").value;
+                var author = document.getElementById("author").value;
+                var publisher = document.getElementById("publisher").value;
+                var temp = document.getElementById("information");
+
+                query = "https://www.googleapis.com/books/v1/volumes?q=";
+                if (title !=""){
+                    title = title.trim();
+                    title = title.replace(" ", "+");
+                    query += ("intitle:"+title);
+                }
+                if (author != "") {
+                    author = author.trim();
+                    author = author.replace(" ", "+");
+                    query += ("inauthor:"+author);
+                }
+                if (publisher != "") {
+                    publisher = publisher.trim();
+                    publisher = publisher.replace(" ", "+");
+                    query += ("inpublisher:"+publisher);
+                }
+                query += ("&key="+key);
 
                 var xhttp = new XMLHttpRequest();
                 
-                xhttp.open("get", "https://www.googleapis.com/books/v1/volumes?q=", true);
-                xhttp.responseType = 'text';
+                xhttp.open("get", query, true);
+                xhttp.responseType = 'json';
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4) {
                         if (xhttp.status == 200) {
-                            if (xhttp.responseText == "FALSE") {
-                                err.innerHTML = "Incorrect Credentials, please try again";
-                            } else {
-
-
-                            }
+                            console.log(xhttp.response);
+                            // var obj = JSON.parse(xhttp.response);
+                            // temp.innerHTML = obj.items[0].publisher;
+                            // console.log(obj.items[0].publisher);
                         }
                     }
                 };
@@ -51,6 +68,7 @@
                 <td><input type="text" id="publisher" value="" size="20"></td>
             </tr>
         </table>
+        <p><input type="button" value="query" onclick="callAPi()"></p>
         <div id="information"></div>
     </body>
 

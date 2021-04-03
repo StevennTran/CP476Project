@@ -20,20 +20,47 @@
                 padding: 10px;
             }
 
-            .search_bar{
-                width: 10%;
-                margin: 0 auto;
-                padding: 10px; 
-            }
-            .search_button{
-                width: 10%;
-                margin: 0 auto;
-                padding: 10px; 
-            }
+            .search-container { 
+                width: 240px; margin-left:auto; padding: 10px; 
+                } 
+            .search-input { 
+                height: 15px; width: 200px; padding: 5px; margin: 0; border: none; background: white; 
+                } 
+            .search-button { 
+                cursor: pointer; height: 25px; width: 30px; border: none; margin-left: -5px; background: white; 
+                }
         </style>
 
 
         <script>
+
+            function query(){
+                var book = document.getElementById("input");
+                console.log(book);
+                var xhttp = new XMLHttpRequest();
+                
+                xhttp.open("get", "bookQuery.php?name="+book, true);
+                xhttp.responseType = 'text';
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4) {
+                        if (xhttp.status == 200) {
+                            if (xhttp.responseText == "FALSE") {
+                                err.innerHTML = "Incorrect Credentials, please try again";
+                            } else {
+                                // This is jQuery
+                                var temp = xhttp.responseText.split(",");
+                                localStorage.setItem("user", temp[0]);
+                                localStorage.setItem("role", temp[1]);
+                                location.href = 'main.html';
+                            }
+                        }
+                    }
+                };
+                xhttp.send();
+            }
+            }
+
+
             function greeting()  {
                 var roles = ["","User", "Other"];
                 var greet = document.getElementById("greet");
@@ -43,6 +70,7 @@
                 logged.innerHTML = "You are logged in as: " + role;
             }
 
+
         </script>
     </head>
     <body onload="greeting()">
@@ -50,11 +78,12 @@
         <h2><div id="greet"></div></h2>
         <p><div id="logged"></div></p>
         <div class="informationDiv"></div>
-        <form class="search_bar" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="serach_button"></i></button>
+        <form >
+            <div class="search-container"> 
+                <input type="text" name="search-text" id="input" class="search-input"/> 
+                <button class="search-button" onclick="query()">&#x1F50D</button> 
+            </div>
           </form>
-        <!-- <p><input type="button" value="Click me" onclick="generateButtons()"/></p> -->
     </body>
 
 

@@ -91,11 +91,12 @@
                             var bookTable = document.createElement("table");
                             for (let i = 0; i < parsedObj.items.length; i++) {
                                 // Get image
+                                var img;
                                 if (parsedObj.items[i].volumeInfo.imageLinks === undefined) {
-                                    var img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
+                                    img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
                                 }
                                 else {
-                                    var img = JSON.stringify(parsedObj.items[i].volumeInfo.imageLinks.thumbnail).replace('"', "");
+                                    img = JSON.stringify(parsedObj.items[i].volumeInfo.imageLinks.thumbnail).replace('"', "");
                                 }
                                 var thumbnail = document.createElement("img");
                                 thumbnail.src = img;
@@ -127,23 +128,31 @@
                                 //     detailButton.disabled = true;
                                 // }
                                 detailButton.onclick = function () {
-                                    location.href = details.html;
+                                    location.href = "details.html";
                                 }
 
                                 localStorage.setItem("title", title);
                                 localStorage.setItem("author", author);
+                                localStorage.setItem("img", img);
                                 var publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
                                 localStorage.setItem("publisher", publisher);
                                 var publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
                                 localStorage.setItem("publishDate", publishDate);
                                 var description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
                                 localStorage.setItem("description", description);
-                                var price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
-                                localStorage.setItem("price", price);
-                                var currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
-                                localStorage.setItem("currency", currency);
-                                var buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
-                                localStorage.setItem("buyLink", buyLink);
+                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"NOT_FOR_SALE"') {
+                                    localStorage.setItem("price", 'N/A');
+                                    localStorage.setItem("currency", 'N/A');
+                                    localStorage.setItem("buyLink", "N/A");
+                                } else {
+                                    var price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
+                                    localStorage.setItem("price", price);
+                                    var currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
+                                    localStorage.setItem("currency", currency);
+                                    var buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
+                                    localStorage.setItem("buyLink", buyLink);
+                                }
+
 
                                 //////////////////////////////////////////////////////////////////////////////////
                                 td.appendChild(detailButton);

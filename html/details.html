@@ -25,19 +25,25 @@
             margin: 0 auto;
             padding: 10px;
         }
+
         img {
             width: 10%;
             margin-top: 50px;
             margin-left: 200px;
             border: 5px solid #555;
-            }
-        .title{
+        }
+
+        .title {
             width: 50%;
             background-color: white;
             margin: 0 auto;
             padding: 10px;
         }
-        
+
+        #myImage {
+            width: 230px;
+            height: auto;
+        }
     </style>
 
 
@@ -47,8 +53,8 @@
             var img = document.getElementById("myImage");
 
             //Set the src property of our element to the new image URL
-            img.src = 'img/new-image.jpg';
-            
+            img.src = localStorage.getItem("img");
+
         }
 
     </script>
@@ -64,7 +70,9 @@
     </p>
     <div class="informationDiv">Testing Centered div</div>
     <div id="image_holder">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png" alt="holder" width="500" height="333">
+        <img id="myImage"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png"
+            alt="holder">
     </div>
     <div id="title">test</div>
     <!-- <p><input type="button" value="Click me" onclick="generateButtons()"/></p> -->

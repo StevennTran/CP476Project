@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Successful Login</title>
+
+    <style>
+        button {
+            padding: 5px;
+        }
+
+        #buttonDiv,
+        #logged,
+        #greet {
+            text-align: center;
+        }
+
+        body {
+            background-image: url("../images/backdrop2.png");
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .informationDiv {
+            width: 80%;
+            background-color: white;
+            margin: 0 auto;
+            padding: 10px;
+            height: 550px;
+            overflow-y: auto;
+        }
+
+        .search-container {
+            width: 240px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .search-input {
+            height: 15px;
+            width: 200px;
+            padding: 5px;
+            margin: 0;
+            border: none;
+            background: white;
+        }
+
+        .search-button {
+            cursor: pointer;
+            height: 25px;
+            width: 30px;
+            border: none;
+            margin-left: -5px;
+            background: white;
+        }
+    </style>
+
+
+    <script>
+
+        var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
+        function queryBook() {
+
+            var title = document.getElementById("input").value;
+            var temp = document.getElementById("information");
+
+            query = "https://www.googleapis.com/books/v1/volumes?q=";
+            if (title != "") {
+                title = title.trim();
+                title = title.replace(" ", "+");
+                query += ("intitle:" + title);
+            }
+
+            query += ("&key=" + key);
+
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.open("get", query, true);
+            xhttp.responseType = 'json';
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        var stringified = JSON.stringify(xhttp.response);
+                        var parsedObj = JSON.parse(stringified);
+
+                        // Create Table
+                        var bookTable = document.createElement("table");
+
+                        for (let i = 0; i < parsedObj.items.length; i++) {
+                            // Get image
+                            var img = JSON.stringify(parsedObj.items[i].volumeInfo.imageLinks.thumbnail).replace('"', "");
+                            var thumbnail = document.createElement("img");
+                            thumbnail.src = img;
+                            var tr = document.createElement("tr");
+                            var td = document.createElement("td");
+                            td.appendChild(thumbnail);
+                            tr.append(td)
+                            bookTable.appendChild(tr);
+
+
+                            // Add titles and stuff
+                            var title = JSON.stringify(parsedObj.items[i].volumeInfo.title);
+                            var author = JSON.stringify(parsedObj.items[i].volumeInfo.authors[0]);
+                            td = document.createElement("td");
+                            td.appendChild(document.createTextNode(title + " - " + author));
+                            tr.appendChild(td);
+                            bookTable.appendChild(tr);
+
+                            // Create the button to redirect
+                            td = document.createElement("td");
+                            var detailButton = document.createElement("Button");
+                            detailButton.innerHTML = "Detail";
+                            ////////////////////////////////////////////////////////////////////////////////
+                            if (JSON.stringify(parsedObj.items[i].saleInfo.buyLink) === undefined) {
+                                detailButton.innerHTML = "Not Available";
+                                detailButton.disabled = true;
+                            }
+                            detailButton.onclick = function () {
+                                location.href = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
+                            }
+                            //////////////////////////////////////////////////////////////////////////////////
+                            td.appendChild(detailButton);
+                            tr.appendChild(td);
+                            bookTable.appendChild(tr);
+                        }
+                        // temp.innerHTML = book;
+                        temp.appendChild(bookTable)
+                        temp.hidden = false;
+                    }
+                }
+            };
+            xhttp.send();
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <script src="validate.js"></script>
+    <h2>
+        <div id="greet"></div>
+    </h2>
+    <p>
+    <div id="logged"></div>
+    </p>
+    <!-- <div class="informationDiv"></div> -->
+
+    <div class="search-container">
+        <input type="text" name="search-text" id="input" class="search-input" />
+        <button class="search-button" onclick="queryBook()">&#x1F50D</button>
+    </div>
+
+    <div hidden=true class="informationDiv" id="information"></div>
+</body>
+
+
+</html>

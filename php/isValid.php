@@ -15,22 +15,20 @@
 
     // create a table
     $conn = new mysqli($servername, $username, $password, $dbname);
-    $sql = "CREATE TABLE forum (
+    $sql = "CREATE TABLE users (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        username CHAR(32) NOT NULL,
-        bookID CHAR(32) NOT NULL,
-        booktitle CHAR(32) NOT NULL,
-        who CHAR(32) NOT NULL)";
+        username CHAR(32) NOT NULL UNIQUE,
+        password CHAR(32) NOT NULL,
+        role TINYINT NOT NULL)";
     $conn->query($sql);
     $conn->close();
 
     //user ID
-    $userName = $_GET["username"]
-    $bookID = $_GET["bookID"];
-    $title = $_GET["title"];
+    $sUsername = $_GET["username"];
+    $sPassword = $_GET["password"];
 
     //create the SQL query string
-    $sql = "Select * from formu where username='".$userName."'";
+    $sql = "Select * from users where username='".$sUsername."' AND password='".$sPassword."'";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,9 +38,9 @@
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $nBookID = $row['bookID'];
-        $nTitle = $row['booktitle'];
-        $info = "$nBookID,$nTitle";
+        $user = $row['username'];
+        $role = $row['role'];
+        $info = "$user,$role";
     } else {
         $info = "FALSE";
     }

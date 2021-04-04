@@ -25,7 +25,7 @@
     $conn->close();
 
     //user ID
-    $userName = $_GET["username"]
+    $userName = $_GET["username"];
     $bookID = $_GET["bookID"];
     $title = $_GET["title"];
 

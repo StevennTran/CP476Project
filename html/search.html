@@ -56,6 +56,34 @@
             margin-left: -5px;
             background: white;
         }
+        .tablink {
+            background-color: darkgoldenrod;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 5%;
+            border-radius: 50%
+            }
+
+            /* Change background color of buttons on hover */
+            .tablink:hover {
+            background-color: #777;
+            }
+
+            /* Set default styles for tab content */
+            .tabcontent {
+            color: white;
+            display: none;
+            padding: 50px;
+            text-align: center;
+            }
+
+            /* Style each tab content individually */
+            #profile {background-color:white;}
     </style>
 
 
@@ -174,6 +202,39 @@
         }
 
 
+        function openProfile() {
+            // Hide all elements with class="tabcontent" by default */
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Remove the background color of all tablinks/buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+
+            // Show the specific tab content
+            document.getElementById("profile").style.display = "block";
+
+            // Add the specific color to the button used to open the tab content
+            //elmnt.style.backgroundColor = color;
+            var roles = ["", "User", "Other"];
+            var name = document.getElementById("name");
+            var logged = document.getElementById("logged");
+            var user = localStorage.getItem("user");
+            console.log(user);
+            greet.innerHTML = "Hello " + user;
+            logged.innerHTML = "You are logged in as: " + role;
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        
+
+
     </script>
 </head>
 
@@ -185,8 +246,16 @@
     <p>
     <div id="logged"></div>
     </p>
+    <div id="profile" class="tabcontent">
+        <h2>
+            <div id="greet"></div>
+        </h2>
+        <p>
+            <div id="logged"></div>
+        </p>
+      </div>
     <!-- <div class="informationDiv"></div> -->
-
+    <button class="tablink" onclick="openProfile()" id="defaultOpen">profile</button>
     <div class="search-container">
         <input type="text" name="search-text" id="input" class="search-input" />
         <button class="search-button" onclick="queryBook()">&#x1F50D</button>

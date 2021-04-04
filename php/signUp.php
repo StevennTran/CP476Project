@@ -18,7 +18,7 @@
     $sql = "CREATE TABLE users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username CHAR(32) NOT NULL UNIQUE,
-        password CHAR(32) NOT NULL,
+        password CHAR(64) NOT NULL,
         role TINYINT NOT NULL)";
     $conn->query($sql);
     $conn->close();

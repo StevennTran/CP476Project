@@ -18,7 +18,7 @@
     $sql = "CREATE TABLE users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username CHAR(32) NOT NULL UNIQUE,
-        password CHAR(32) NOT NULL,
+        password CHAR(64) NOT NULL,
         role TINYINT NOT NULL)";
     $conn->query($sql);
     $conn->close();
@@ -29,7 +29,6 @@
     $sPassword = sha1($sPassword);
     //create the SQL query string
     $sql = "SELECT * FROM users WHERE username='".$sUsername."' AND password='".$sPassword."'";
-    echo $sPassword;
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);

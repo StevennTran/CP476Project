@@ -108,7 +108,10 @@
 
                                 // Add titles and stuff
                                 var title = JSON.stringify(parsedObj.items[i].volumeInfo.title);
-                                var author = JSON.stringify(parsedObj.items[i].volumeInfo.authors[0]);
+                                var author = "N/A";
+                                if (parsedObj.items[i].volumeInfo.authors != undefined) {
+                                    var author = JSON.stringify(parsedObj.items[i].volumeInfo.authors[0]);
+                                }
                                 td = document.createElement("td");
                                 td.appendChild(document.createTextNode(title + " - " + author));
                                 tr.appendChild(td);
@@ -119,13 +122,29 @@
                                 var detailButton = document.createElement("Button");
                                 detailButton.innerHTML = "Detail";
                                 ////////////////////////////////////////////////////////////////////////////////
-                                if (JSON.stringify(parsedObj.items[i].saleInfo.buyLink) === undefined) {
-                                    detailButton.innerHTML = "Not Available";
-                                    detailButton.disabled = true;
-                                }
+                                // if (JSON.stringify(parsedObj.items[i].saleInfo.buyLink) === undefined) {
+                                //     detailButton.innerHTML = "Not Available";
+                                //     detailButton.disabled = true;
+                                // }
                                 detailButton.onclick = function () {
-                                    location.href = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
+                                    location.href = details.html;
                                 }
+
+                                localStorage.setItem("title", title);
+                                localStorage.setItem("author", author);
+                                var publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
+                                localStorage.setItem("publisher", publisher);
+                                var publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
+                                localStorage.setItem("publishDate", publishDate);
+                                var description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
+                                localStorage.setItem("description", description);
+                                var price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
+                                localStorage.setItem("price", price);
+                                var currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
+                                localStorage.setItem("currency", currency);
+                                var buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
+                                localStorage.setItem("buyLink", buyLink);
+
                                 //////////////////////////////////////////////////////////////////////////////////
                                 td.appendChild(detailButton);
                                 tr.appendChild(td);

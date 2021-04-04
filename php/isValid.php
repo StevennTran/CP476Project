@@ -28,14 +28,12 @@
     $sPassword = $_GET["password"];
     $sPassword = sha1($sPassword);
     //create the SQL query string
-    $sql = "Select * from users where username='".$sUsername."' AND password='".$sPassword."'";
-              
+    $sql = "SELECT * FROM users WHERE username='".$sUsername."' AND password='".$sPassword."'";
+    echo $sPassword;
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
     $result = $conn->query($sql);
-
-
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $user = $row['username'];

@@ -39,12 +39,13 @@
                     if (xhttp.status == 200) {
                         if (xhttp.responseText == "FALSE") {
                             err.innerHTML = "Incorrect Credentials, please try again";
+                            //err.innerHTML = xhttp.responseText;
                         } else {
                             // This is jQuery
                             var temp = xhttp.responseText.split(",");
                             localStorage.setItem("user", temp[0]);
                             localStorage.setItem("role", temp[1]);
-                            location.href = 'main.html';
+                            location.href = 'search.html';
                         }
                     }
                 }

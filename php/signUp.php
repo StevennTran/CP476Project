@@ -36,7 +36,7 @@
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-    if ($conn->query($sql) === False) {
+    if ($conn->query($sql) === TRUE) {
         echo "\nInsert successfully";
       } else {
         echo "FALSE";

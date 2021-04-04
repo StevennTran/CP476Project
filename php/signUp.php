@@ -26,6 +26,7 @@
     //user ID
     $sUsername = $_GET["username"];
     $sPassword = $_GET["password"];
+    $sPassword = sha1($sPassword);
 
     //create the SQL query string
 

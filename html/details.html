@@ -51,9 +51,14 @@
         function loadBook() {
             //var img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
             var img = document.getElementById("myImage");
+            var title = document.getElementById("Title");
+
+            var bookNumStr = localStorage.getItem("pressed");
+            var bookNum = parseInt(bookNumStr);
 
             //Set the src property of our element to the new image URL
-            img.src = localStorage.getItem("img");
+            img.src = localStorage.getItem("img" + bookNumStr);
+            title.innerHTML = localStorage.getItem("title" + bookNumStr);
 
         }
 
@@ -69,13 +74,19 @@
     <div id="logged"></div>
     </p>
     <div class="informationDiv">Testing Centered div</div>
-    <div id="image_holder">
+
+    <div id="image_holder" style="display:inline-block;vertical-align:top;">
         <img id="myImage"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png"
             alt="holder">
     </div>
-    <div id="title">test</div>
-    <!-- <p><input type="button" value="Click me" onclick="generateButtons()"/></p> -->
+    <div style="display:inline-block;margin-top: 50px">
+        <div id="Title" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+    </div>
+
+
+    <!-- <div id="title">test</div> -->
+
 </body>
 
 

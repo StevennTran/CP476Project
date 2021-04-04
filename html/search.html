@@ -140,7 +140,7 @@
                                 localStorage.setItem("publishDate", publishDate);
                                 var description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
                                 localStorage.setItem("description", description);
-                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"NOT_FOR_SALE"') {
+                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"NOT_FOR_SALE"' || JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"FREE"') {
                                     localStorage.setItem("price", 'N/A');
                                     localStorage.setItem("currency", 'N/A');
                                     localStorage.setItem("buyLink", "N/A");

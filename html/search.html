@@ -62,7 +62,7 @@
     <script>
 
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
-        var bookNum = 0;
+
         function queryBook() {
 
             var title = document.getElementById("input").value;
@@ -85,6 +85,7 @@
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4) {
                     if (xhttp.status == 200) {
+                        var bookNum = 0;
                         var stringified = JSON.stringify(xhttp.response);
                         var parsedObj = JSON.parse(stringified);
                         if (JSON.stringify(parsedObj.totalItems) != 0) {
@@ -123,53 +124,39 @@
                                 td = document.createElement("td");
                                 var detailButton = document.createElement("Button");
                                 detailButton.innerHTML = "Detail";
-                                ////////////////////////////////////////////////////////////////////////////////
-                                // if (JSON.stringify(parsedObj.items[i].saleInfo.buyLink) === undefined) {
-                                //     detailButton.innerHTML = "Not Available";
-                                //     detailButton.disabled = true;
-                                // }
                                 detailButton.id = bookNum.toString();
                                 detailButton.onclick = function () {
-                                    // alert(this.id);
                                     localStorage.setItem("pressed", this.id);
                                     location.href = "details.html";
                                 }
-                                console.log("title" + bookNum.toString());
-                                localStorage.setItem("title" + bookNum.toString(), title);
-                                localStorage.setItem("author" + bookNum.toString(), author);
-                                localStorage.setItem("img" + bookNum.toString(), img);
+
+                                // Retreiving the data
                                 var publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
-                                localStorage.setItem("publisher" + bookNum.toString(), publisher);
                                 var publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
-                                localStorage.setItem("publishDate" + bookNum.toString(), publishDate);
-                                var description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
-                                localStorage.setItem("description" + bookNum.toString(), description);
-                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"NOT_FOR_SALE"' || JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"FREE"') {
-                                    localStorage.setItem("price" + bookNum.toString(), 'N/A');
-                                    localStorage.setItem("currency" + bookNum.toString(), 'N/A');
-                                    localStorage.setItem("buyLink" + bookNum.toString(), "N/A");
-                                } else {
-                                    var price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
-                                    localStorage.setItem("price" + bookNum.toString(), price);
-                                    var currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
-                                    localStorage.setItem("currency" + bookNum.toString(), currency);
-                                    var buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replaceAll('"', "");
-                                    localStorage.setItem("buyLink" + bookNum.toString(), buyLink);
+                                var description = "N/A"
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.description) != undefined) {
+                                    description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
                                 }
+                                var price = "N/A";
+                                var currency = "N/A";
+                                var buyLink = "N/A";
+                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"FOR_SALE"') {
+                                    price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
+                                    currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
+                                    buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replaceAll('"', "");
+                                }
+                                // Storing the Data
+                                localStorage.setItem("title" + bookNum.toString(), title.replaceAll('"', ""));
+                                localStorage.setItem("author" + bookNum.toString(), author.replaceAll('"', ""));
+                                localStorage.setItem("img" + bookNum.toString(), img.replaceAll('"', ""));
+                                localStorage.setItem("publisher" + bookNum.toString(), publisher.replaceAll('"', ""));
+                                localStorage.setItem("publishDate" + bookNum.toString(), publishDate.replaceAll('"', ""));
+                                localStorage.setItem("description" + bookNum.toString(), description.replaceAll('"', ""));
+                                localStorage.setItem("price" + bookNum.toString(), price.replaceAll('"', ""));
+                                localStorage.setItem("currency" + bookNum.toString(), currency.replaceAll('"', ""));
+                                localStorage.setItem("buyLink" + bookNum.toString(), buyLink.replaceAll('"', ""));
+
                                 bookNum += 1;
-                                // var book = [];
-                                // // var bookTemp = "" + title + "~" + author + "~"+img+"~"+puc;
-                                // book.push(title);
-                                // book.push(author);
-                                // book.push(img);
-                                // book.push(publisher.replaceAll('"', ""));
-                                // book.push(publishDate.replaceAll('"', ""));
-                                // book.push(description);
-                                // book.push(price);
-                                // book.push(currency.replaceAll('"', ""));
-                                // book.push(buyLink.replaceAll('"', ""));
-                                // books.push(book);
-                                //////////////////////////////////////////////////////////////////////////////////
                                 td.appendChild(detailButton);
                                 tr.appendChild(td);
                                 bookTable.appendChild(tr);

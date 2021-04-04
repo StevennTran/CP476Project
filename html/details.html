@@ -51,7 +51,14 @@
         function loadBook() {
             //var img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
             var img = document.getElementById("myImage");
-            var title = document.getElementById("Title");
+            var title = document.getElementById("title");
+            var author = document.getElementById("author");
+            var publisher = document.getElementById("publisher");
+            var publishDate = document.getElementById("publishDate");
+            var description = document.getElementById("description");
+            var price = document.getElementById("price");
+            var currency = document.getElementById("currency");
+            var buyLink = document.getElementById("buyLink");
 
             var bookNumStr = localStorage.getItem("pressed");
             var bookNum = parseInt(bookNumStr);
@@ -59,6 +66,14 @@
             //Set the src property of our element to the new image URL
             img.src = localStorage.getItem("img" + bookNumStr);
             title.innerHTML = localStorage.getItem("title" + bookNumStr);
+            author.innerHTML = localStorage.getItem("author" + bookNumStr);
+            publisher.innerHTML = localStorage.getItem("publisher" + bookNumStr);
+            publishDate.innerHTML = localStorage.getItem("publishDate" + bookNumStr);
+            description.innerHTML = localStorage.getItem("description" + bookNumStr);
+            price.innerHTML = localStorage.getItem("price" + bookNumStr);
+            currency.innerHTML = localStorage.getItem("currency" + bookNumStr);
+            buyLink.innerHTML = localStorage.getItem("buyLink" + bookNumStr);
+
 
         }
 
@@ -81,11 +96,15 @@
             alt="holder">
     </div>
     <div style="display:inline-block;margin-top: 50px">
-        <div id="Title" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="title" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="author" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="publisher" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="publishDate" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="description" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="price" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="currency" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
+        <div id="buyLink" style="margin-left: 20px;font-size: 26pt;background-color: white;">Testing</div>
     </div>
-
-
-    <!-- <div id="title">test</div> -->
 
 </body>
 

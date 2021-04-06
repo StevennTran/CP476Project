@@ -131,9 +131,15 @@
                                 }
 
                                 // Retreiving the data
-                                var publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
-                                var publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
-                                var description = "N/A"
+                                var publisher = "Unknown";
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.publisher) != undefined) {
+                                    publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
+                                }
+                                var publishDate = "Unknown Date";
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate) != undefined) {
+                                    publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
+                                }
+                                var description = "N/A";
                                 if (JSON.stringify(parsedObj.items[i].volumeInfo.description) != undefined) {
                                     description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
                                 }

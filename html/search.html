@@ -3,7 +3,7 @@
 
 <head>
     <title>Successful Login</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         button {
             padding: 5px;
@@ -16,7 +16,7 @@
         }
 
         body {
-            background-image: url("../images/backdrop2.png");
+            background-image: url("../images/books.png");
         }
 
         table {
@@ -26,35 +26,48 @@
 
         .informationDiv {
             width: 80%;
-            background-color: white;
+            height: 550px;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 0 auto;
             padding: 10px;
-            height: 550px;
             overflow-y: auto;
         }
 
         .search-container {
-            width: 240px;
-            margin: 0 auto;
-            padding: 10px;
+            width: 60%;
+            height: 90%;
+            position: absolute;
         }
 
         .search-input {
-            height: 15px;
-            width: 200px;
-            padding: 5px;
-            margin: 0;
+            height: 40px;
+            width: 90%;
+            position: relative;
+            top: 40%;
+            left: 30%;
+            padding-top: 5px;
+            padding-bottom: 13px;
+            padding-left: 10px;
+            padding-right: 55px;
+            font-size: 36pt;
             border: none;
             background: white;
+            outline: none;
+            border-radius: 10pt;
         }
 
         .search-button {
             cursor: pointer;
-            height: 25px;
-            width: 30px;
+            height: 60px;
+            width: 5%;
+            position: relative;
+            top: 40%;
+            left: 30%;
             border: none;
-            margin-left: -5px;
-            background: white;
+            margin-left: -2%;
+            background: goldenrod;
+            outline: none;
+            border-radius: 10pt;
         }
     </style>
 
@@ -62,12 +75,38 @@
     <script>
 
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
+        var moved = false;
+        var id = null;
+
+        function animateSearchBar() {
+            var searchBar = document.getElementById("input");
+            var searchButton = document.getElementById("searchButton")
+            var pos = (window.screen.height * 0.4) - 80;
+            console.log(pos);
+            clearInterval(id);
+            id = setInterval(frame, 1);
+            function frame() {
+                if (pos <= 50) {
+                    clearInterval(id);
+                } else {
+                    pos = pos - 5;
+                    searchBar.style.top = pos + 'px';
+                    searchButton.style.top = pos + 'px';
+
+                }
+            }
+
+        }
 
         function queryBook() {
-
             var title = document.getElementById("input").value;
             var temp = document.getElementById("information");
             temp.innerHTML = "";
+
+            if (moved == false && title != "") {
+                animateSearchBar();
+                moved = true;
+            }
 
             query = "https://www.googleapis.com/books/v1/volumes?q=";
             if (title != "") {
@@ -195,11 +234,15 @@
     </p>
     <!-- <div class="informationDiv"></div> -->
 
-    <div class="search-container">
+    <!-- <div id="animationContainer"> -->
+    <div class="search-container" id="searchComponent">
         <input type="text" name="search-text" id="input" class="search-input" />
-        <button class="search-button" onclick="queryBook()">&#x1F50D</button>
+        <button id="searchButton" class="search-button" onclick="queryBook()"><i class="fa fa-search"
+                style="font-size: 25pt;"></i></button>
+        <!-- </div> -->
     </div>
 
+    <br /><br /> <br /><br /><br /><br /><br /><br />
     <div hidden=true class="informationDiv" id="information"></div>
 </body>
 

@@ -78,6 +78,15 @@
             background-color: rgb(88, 88, 88);
             box-shadow: 0 2px #666;
         }
+
+        #commentSection {
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 63.5%;
+            padding-bottom: 10px;
+            margin-left: 24%;
+            overflow-y: auto;
+        }
     </style>
 
 
@@ -113,6 +122,7 @@
 
             var bookNumStr = localStorage.getItem("pressed");
             var bookNum = parseInt(bookNumStr);
+            var bookID = localStorage.getItem("bookID" + bookNumStr);
 
             //Set the src property of our element to the new image URL
             img.src = localStorage.getItem("img" + bookNumStr);
@@ -139,6 +149,33 @@
 
             }
 
+            // Comment Section
+            var commentSection = document.getElementById("commentSection");
+
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.open("post", "../php/loadComments.php?bookID=" + bookID, true);
+            xhttp.responseType = 'text';
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        if (xhttp.responseText == "NO COMMENTS") {
+                            commentSection.innerHTML = "No comments :(";
+                        } else {
+                            console.log(xhttp.responseText);
+                            var commentsList = xhttp.responseText.split("|");
+                            for (let i = 1; i < commentsList.length; i++) {
+                                var comment = document.createElement("h2");
+                                var commentSplit = commentsList[i].split(",");
+                                console.log(commentSplit);
+                                comment.innerHTML = commentSplit[0] + " - " + commentSplit[1];
+                                commentSection.appendChild(comment);
+                            }
+                        }
+                    }
+                }
+            };
+            xhttp.send();
 
         }
 
@@ -193,11 +230,17 @@
         <br />
         <div id="description" style="margin-left:15px;font-size: 18pt;">Testing</div>
     </div>
-    <br />
+    <br /><br />
 
-    <div>
-        Testing
+    <div
+        style="display:inline-block;background-color: rgba(255, 255, 255, 0.8);width:63.5%;padding-bottom: 10px;margin-left: 24%;">
+        <h2 style="color: red;text-decoration: underline;"><strong>Book Talk</strong></h2>
+
     </div>
+    <div id="commentSection"></div>
+
+
+
 
 </body>
 

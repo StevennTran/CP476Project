@@ -190,6 +190,8 @@
                                     currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
                                     buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replaceAll('"', "");
                                 }
+                                var bookID = JSON.stringify(parsedObj.items[i].id);
+
                                 // Storing the Data
                                 localStorage.setItem("title" + bookNum.toString(), title.replaceAll('"', ""));
                                 localStorage.setItem("author" + bookNum.toString(), author.replaceAll('"', ""));
@@ -200,6 +202,7 @@
                                 localStorage.setItem("price" + bookNum.toString(), price.replaceAll('"', ""));
                                 localStorage.setItem("currency" + bookNum.toString(), currency.replaceAll('"', ""));
                                 localStorage.setItem("buyLink" + bookNum.toString(), buyLink.replaceAll('"', ""));
+                                localStorage.setItem("bookID" + bookNum.toString(), bookID.replaceAll('"', ""));
 
                                 bookNum += 1;
                                 td.appendChild(detailButton);

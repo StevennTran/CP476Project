@@ -3,7 +3,7 @@
 
 <head>
     <title>Successful Login</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         button {
             padding: 5px;
@@ -16,7 +16,7 @@
         }
 
         body {
-            background-image: url("../images/backdrop2.png");
+            background-image: url("../images/books.png");
         }
 
         table {
@@ -26,75 +26,87 @@
 
         .informationDiv {
             width: 80%;
-            background-color: white;
+            height: 550px;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 0 auto;
             padding: 10px;
-            height: 550px;
             overflow-y: auto;
         }
 
         .search-container {
-            width: 240px;
-            margin: 0 auto;
-            padding: 10px;
+            width: 60%;
+            height: 90%;
+            position: absolute;
         }
 
         .search-input {
-            height: 15px;
-            width: 200px;
-            padding: 5px;
-            margin: 0;
+            height: 40px;
+            width: 85%;
+            position: relative;
+            top: 40%;
+            left: 30%;
+            padding-top: 5px;
+            padding-bottom: 13px;
+            padding-left: 10px;
+            padding-right: 55px;
+            font-size: 36pt;
             border: none;
             background: white;
+            outline: none;
+            border-radius: 10pt;
         }
 
         .search-button {
             cursor: pointer;
-            height: 25px;
-            width: 30px;
-            border: none;
-            margin-left: -5px;
-            background: white;
-        }
-        .tablink {
-            background-color: darkgoldenrod;
-            color: white;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            font-size: 17px;
+            height: 60px;
             width: 5%;
-            border-radius: 50%
-            }
-
-            /* Change background color of buttons on hover */
-            .tablink:hover {
-            background-color: #777;
-            }
-
-            /* Set default styles for tab content */
-            .tabcontent {
-            color: white;
-            display: none;
-            padding: 50px;
-            text-align: center;
-            }
-
-            /* Style each tab content individually */
-            #profile {background-color:white;}
+            position: relative;
+            top: 40%;
+            left: 30%;
+            border: none;
+            margin-left: -2%;
+            background: goldenrod;
+            outline: none;
+            border-radius: 10pt;
+        }
     </style>
 
 
     <script>
 
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
-        function queryBook() {
+        var moved = false;
+        var id = null;
 
+        function animateSearchBar() {
+            var searchBar = document.getElementById("input");
+            var searchButton = document.getElementById("searchButton")
+            var pos = (window.screen.height * 0.4) - 80;
+            console.log(pos);
+            clearInterval(id);
+            id = setInterval(frame, 1);
+            function frame() {
+                if (pos <= 50) {
+                    clearInterval(id);
+                } else {
+                    pos = pos - 5;
+                    searchBar.style.top = pos + 'px';
+                    searchButton.style.top = pos + 'px';
+
+                }
+            }
+
+        }
+
+        function queryBook() {
             var title = document.getElementById("input").value;
             var temp = document.getElementById("information");
             temp.innerHTML = "";
+
+            if (moved == false && title != "") {
+                animateSearchBar();
+                moved = true;
+            }
 
             query = "https://www.googleapis.com/books/v1/volumes?q=";
             if (title != "") {
@@ -112,6 +124,7 @@
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4) {
                     if (xhttp.status == 200) {
+                        var bookNum = 0;
                         var stringified = JSON.stringify(xhttp.response);
                         var parsedObj = JSON.parse(stringified);
                         if (JSON.stringify(parsedObj.totalItems) != 0) {
@@ -136,10 +149,10 @@
 
 
                                 // Add titles and stuff
-                                var title = JSON.stringify(parsedObj.items[i].volumeInfo.title);
+                                var title = JSON.stringify(parsedObj.items[i].volumeInfo.title).replaceAll('"', "");
                                 var author = "N/A";
                                 if (parsedObj.items[i].volumeInfo.authors != undefined) {
-                                    var author = JSON.stringify(parsedObj.items[i].volumeInfo.authors[0]);
+                                    var author = JSON.stringify(parsedObj.items[i].volumeInfo.authors[0]).replaceAll('"', "");
                                 }
                                 td = document.createElement("td");
                                 td.appendChild(document.createTextNode(title + " - " + author));
@@ -150,39 +163,45 @@
                                 td = document.createElement("td");
                                 var detailButton = document.createElement("Button");
                                 detailButton.innerHTML = "Detail";
-                                ////////////////////////////////////////////////////////////////////////////////
-                                // if (JSON.stringify(parsedObj.items[i].saleInfo.buyLink) === undefined) {
-                                //     detailButton.innerHTML = "Not Available";
-                                //     detailButton.disabled = true;
-                                // }
+                                detailButton.id = bookNum.toString();
                                 detailButton.onclick = function () {
+                                    localStorage.setItem("pressed", this.id);
                                     location.href = "details.html";
                                 }
 
-                                localStorage.setItem("title", title);
-                                localStorage.setItem("author", author);
-                                localStorage.setItem("img", img);
-                                var publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
-                                localStorage.setItem("publisher", publisher);
-                                var publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
-                                localStorage.setItem("publishDate", publishDate);
-                                var description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
-                                localStorage.setItem("description", description);
-                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"NOT_FOR_SALE"' ||JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"FREE"' ) {
-                                    localStorage.setItem("price", 'N/A');
-                                    localStorage.setItem("currency", 'N/A');
-                                    localStorage.setItem("buyLink", "N/A");
-                                } else {
-                                    var price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
-                                    localStorage.setItem("price", price);
-                                    var currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
-                                    localStorage.setItem("currency", currency);
-                                    var buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replace('"', "");
-                                    localStorage.setItem("buyLink", buyLink);
+                                // Retreiving the data
+                                var publisher = "Unknown";
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.publisher) != undefined) {
+                                    publisher = JSON.stringify(parsedObj.items[i].volumeInfo.publisher);
                                 }
+                                var publishDate = "Unknown Date";
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate) != undefined) {
+                                    publishDate = JSON.stringify(parsedObj.items[i].volumeInfo.publishedDate);
+                                }
+                                var description = "N/A";
+                                if (JSON.stringify(parsedObj.items[i].volumeInfo.description) != undefined) {
+                                    description = JSON.stringify(parsedObj.items[i].volumeInfo.description);
+                                }
+                                var price = "N/A";
+                                var currency = "N/A";
+                                var buyLink = "N/A";
+                                if (JSON.stringify(parsedObj.items[i].saleInfo.saleability) == '"FOR_SALE"') {
+                                    price = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.amount);
+                                    currency = JSON.stringify(parsedObj.items[i].saleInfo.retailPrice.currencyCode);
+                                    buyLink = JSON.stringify(parsedObj.items[i].saleInfo.buyLink).replaceAll('"', "");
+                                }
+                                // Storing the Data
+                                localStorage.setItem("title" + bookNum.toString(), title.replaceAll('"', ""));
+                                localStorage.setItem("author" + bookNum.toString(), author.replaceAll('"', ""));
+                                localStorage.setItem("img" + bookNum.toString(), img.replaceAll('"', ""));
+                                localStorage.setItem("publisher" + bookNum.toString(), publisher.replaceAll('"', ""));
+                                localStorage.setItem("publishDate" + bookNum.toString(), publishDate.replaceAll('"', ""));
+                                localStorage.setItem("description" + bookNum.toString(), description.replaceAll('"', ""));
+                                localStorage.setItem("price" + bookNum.toString(), price.replaceAll('"', ""));
+                                localStorage.setItem("currency" + bookNum.toString(), currency.replaceAll('"', ""));
+                                localStorage.setItem("buyLink" + bookNum.toString(), buyLink.replaceAll('"', ""));
 
-
-                                //////////////////////////////////////////////////////////////////////////////////
+                                bookNum += 1;
                                 td.appendChild(detailButton);
                                 tr.appendChild(td);
                                 bookTable.appendChild(tr);
@@ -202,39 +221,6 @@
         }
 
 
-        function openProfile() {
-            // Hide all elements with class="tabcontent" by default */
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-
-            // Remove the background color of all tablinks/buttons
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].style.backgroundColor = "";
-            }
-
-            // Show the specific tab content
-            document.getElementById("profile").style.display = "block";
-
-            // Add the specific color to the button used to open the tab content
-            //elmnt.style.backgroundColor = color;
-            var roles = ["", "User", "Other"];
-            var name = document.getElementById("name");
-            var logged = document.getElementById("logged");
-            var user = localStorage.getItem("user");
-            console.log(user);
-            greet.innerHTML = "Hello " + user;
-            logged.innerHTML = "You are logged in as: " + role;
-            }
-
-            // Get the element with id="defaultOpen" and click on it
-            document.getElementById("defaultOpen").click();
-        
-
-
     </script>
 </head>
 
@@ -246,21 +232,17 @@
     <p>
     <div id="logged"></div>
     </p>
-    <div id="profile" class="tabcontent">
-        <h2>
-            <div id="greet"></div>
-        </h2>
-        <p>
-            <div id="logged"></div>
-        </p>
-      </div>
     <!-- <div class="informationDiv"></div> -->
-    <button class="tablink" onclick="openProfile()" id="defaultOpen">profile</button>
-    <div class="search-container">
+
+    <!-- <div id="animationContainer"> -->
+    <div class="search-container" id="searchComponent">
         <input type="text" name="search-text" id="input" class="search-input" />
-        <button class="search-button" onclick="queryBook()">&#x1F50D</button>
+        <button id="searchButton" class="search-button" onclick="queryBook()"><i class="fa fa-search"
+                style="font-size: 25pt;"></i></button>
+        <!-- </div> -->
     </div>
 
+    <br /><br /> <br /><br /><br /><br /><br /><br />
     <div hidden=true class="informationDiv" id="information"></div>
 </body>
 

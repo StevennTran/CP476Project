@@ -80,12 +80,29 @@
         }
 
         #commentSection {
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 63.5%;
+            height: 170px;
+            background-color: rgb(226, 226, 226);
+            width: 90%;
+            margin: 0 auto;
             padding-bottom: 10px;
-            margin-left: 24%;
+            /* margin-left: 24%; */
             overflow-y: auto;
+        }
+
+        textarea {
+            width: 90%;
+            height: 150px;
+            display: block;
+            /* padding: 12px 20px; */
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+            resize: none;
+            outline: none;
         }
     </style>
 
@@ -117,12 +134,15 @@
             var price = document.getElementById("price");
             var bButton = document.getElementById("buy");
 
+            var label = document.getElementById("greet");
+            label.innerHTML = "Logged in as: <span style='color: crimson'>" + localStorage.getItem("user") + "</span>";
+
             var colorBackground = document.getElementById("colorBack");
 
 
             var bookNumStr = localStorage.getItem("pressed");
             var bookNum = parseInt(bookNumStr);
-            var bookID = localStorage.getItem("bookID" + bookNumStr);
+
 
             //Set the src property of our element to the new image URL
             img.src = localStorage.getItem("img" + bookNumStr);
@@ -150,7 +170,15 @@
             }
 
             // Comment Section
+            loadComment();
+
+        }
+
+        function loadComment() {
             var commentSection = document.getElementById("commentSection");
+            commentSection.innerHTML = "";
+            var bookNumStr = localStorage.getItem("pressed");
+            var bookID = localStorage.getItem("bookID" + bookNumStr);
 
             var xhttp = new XMLHttpRequest();
 
@@ -171,6 +199,44 @@
                                 comment.innerHTML = commentSplit[0] + " - " + commentSplit[1];
                                 commentSection.appendChild(comment);
                             }
+                        }
+                    }
+                }
+            };
+            xhttp.send();
+        }
+
+        function postComment() {
+
+
+            var bookNumStr = localStorage.getItem("pressed");
+            var username = localStorage.getItem("user");
+            username.replace(" ", "+?+?")
+
+            var bookID = localStorage.getItem("bookID" + bookNumStr);
+
+            var title = localStorage.getItem("title" + bookNumStr);
+            title.replace(" ", "+?+?");
+
+            var commentBox = document.getElementById("myComment");
+            var myComment = commentBox.value;
+            myComment.replace(" ", "+?+?");
+
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.open("post", "../php/writeComment.php?username=" + username + "&bookID=" + bookID + "&title=" + title + "&comment=" + myComment, true);
+            xhttp.responseType = 'text';
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        console.log(xhttp.responseText);
+                        if (xhttp.responseText == "FALSE") {
+                            console.log("insert unsuccessful")
+                        } else {
+                            console.log("inserted successfully");
+                            commentBox.innerHTML = "";
+                            loadComment();
+
                         }
                     }
                 }
@@ -230,14 +296,25 @@
         <br />
         <div id="description" style="margin-left:15px;font-size: 18pt;">Testing</div>
     </div>
-    <br /><br />
+    <br />
 
-    <div
-        style="display:inline-block;background-color: rgba(255, 255, 255, 0.8);width:63.5%;padding-bottom: 10px;margin-left: 24%;">
-        <h2 style="color: red;text-decoration: underline;"><strong>Book Talk</strong></h2>
+    <div style="display:block;background-color: rgba(255, 255, 255, 0.9);width: 80%;height: 600px;margin: 0 auto;">
+        <p style="color: red;text-decoration: underline;font-size: 24pt;"><strong>Book Talk</strong></p>
+        <div id="commentSection"></div>
+        <br />
+        <p id="greet" style="font-size: 14pt;"></p>
+
+        <td><span style="font-size: 16pt;">Comment</span></td>
+
+
+        <textarea id="myComment"></textarea>
+        <br />
+        <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;"
+            onclick="postComment()">Post
+            Comment</button>
 
     </div>
-    <div id="commentSection"></div>
+    <br />
 
 
 

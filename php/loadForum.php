@@ -30,8 +30,8 @@
     $title = $_GET["title"];
 
     //create the SQL query string
-    $sql = "Select * from formu where username='".$userName."'";
-              
+    $sql = "Select * from forum where username='".$userName."'";
+
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);

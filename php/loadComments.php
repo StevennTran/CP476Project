@@ -20,7 +20,7 @@
         username CHAR(32) NOT NULL,
         bookID CHAR(32) NOT NULL,
         booktitle CHAR(32) NOT NULL,
-        comment CHAR(32) NOT NULL,
+        comment CHAR(128) NOT NULL,
         who CHAR(32) NOT NULL)";
     $conn->query($sql);
     $conn->close();

@@ -26,16 +26,16 @@
     $conn->close();
 
     //user ID
-    $suserName = $_GET["username"];
+    // $suserName = $_GET["username"];
     $bookID = $_GET["bookID"];
-    $title = $_GET["title"];
+    // $title = $_GET["title"];
     //create the SQL query string
     $sql = "Select * from forum where bookID ='".$bookID."'";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-    $result = $conn->query($sql)->fetch_all;
+    $result = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
     if ($result->num_rows > 0) {
         foreach ($result as $row){
             $user = $row['username'];

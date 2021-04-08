@@ -36,13 +36,13 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
     $result = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-    if ($result->num_rows > 0) {
-        foreach ($result as $row){
-            $user = $row['username'];
-            $role = $row['role'];
-            $info = "$user,$role";
-        } 
-    } else {
+
+    foreach ($result as $row){
+        $nUsername = $row['username'];
+        $nComment = $row['comment'];
+        $info = "|"."$nUsername,$nComment";
+    }
+    if(strlen($info) == 0){
         $info = "NO COMMENTS";
     }
     $conn->close();

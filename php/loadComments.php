@@ -40,7 +40,7 @@
     foreach ($result as $row){
         $nUsername = $row['username'];
         $nComment = $row['comment'];
-        $info = "|"."$nUsername,$nComment";
+        $info = $info."|"."$nUsername,$nComment";
     }
     if(strlen($info) == 0){
         $info = "NO COMMENTS";

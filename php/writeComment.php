@@ -42,13 +42,15 @@
     // echo $bookID;
     // echo $title;
     // echo $comment;
-    $sql = "INSERT INTO forum (username,bookID,booktitle,comment,who) VALUES (".$suserName.",".$bookID.",".$title.",".$comment."'null')";
+    $sql = "INSERT INTO forum (username,bookID,booktitle,comment,who) VALUES (".$suserName.",".$bookID.",".$title.",".$comment.",'null')";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
     if ($conn->query($sql) === TRUE) {
         echo "\nInsert successfully";
+        #echo $conn -> error;
       } else {
-        echo "FALSE";
+        #echo "FALSE";
+        echo $conn -> error;
       }
     $conn->close();
 ?>

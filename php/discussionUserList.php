@@ -20,31 +20,29 @@
         username CHAR(32) NOT NULL,
         bookID CHAR(32) NOT NULL,
         booktitle CHAR(32) NOT NULL,
+        comment CHAR(128) NOT NULL,
         who CHAR(32) NOT NULL)";
     $conn->query($sql);
     $conn->close();
 
     //user ID
-    $userName = $_GET["username"];
-    $bookID = $_GET["bookID"];
-    $title = $_GET["title"];
-
+    $suserName = $_GET["username"];
+    //$bookID = $_GET["bookID"];
+    // $title = $_GET["title"];
     //create the SQL query string
-    $sql = "Select * from formu where username='".$userName."'";
+    $sql = "Select * from forum where username ='".$suserName."'";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-    $result = $conn->query($sql);
+    $result = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $nBookID = $row['bookID'];
-        $nTitle = $row['booktitle'];
-        $info = "$nBookID,$nTitle";
-    } else {
-        $info = "FALSE";
+    foreach ($result as $row){
+        $nComment = $row['comment'];
+        $info = $info."|".$nComment;
+    }
+    if(strlen($info) == 0){
+        $info = "NO COMMENTS";
     }
     $conn->close();
     echo $info;

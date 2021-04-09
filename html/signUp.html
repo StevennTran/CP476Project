@@ -3,26 +3,7 @@
 
 <head>
     <title>Welcome</title>
-    <style>
-        h1,
-        h3,
-        tr,
-        td,
-        p {
-            text-align: center;
-            padding: 6px;
-        }
-
-        table.center {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #errorMsg {
-            text-align: center;
-            color: rgb(243, 39, 39);
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/sign.css"> 
 
     <script>
         function checkValid() {
@@ -56,21 +37,26 @@
 </head>
 
 <body>
-    <h1>Welcome to the Sign Up Page</h1>
-    <h3>Please Create an Account</h3>
-
-    <table class="center">
-        <tr>
-            <td>Username: </td>
-            <td><input type="text" name="username" id="username" value="" size="20"></td>
-        </tr>
-        <tr>
-            <td>Password: </td>
-            <td><input type="password" name="password" id="password" value="" size="20"></td>
-        </tr>
-    </table>
-    <p><input type="button" value="Sign Up" onclick="checkValid()"></p>
-    <div id="errorMsg"></div>
+    <h2>Welcome to the Sign up page!</h2>
+    <h2>Please sign up below</h2><br> 
+    <div class="login">    
+    <form id="login" method="get" action="signUp.php">    
+        <label><b>Username:     
+        </b>    
+        </label>    
+        <input type="text" name="Username" id="Username" placeholder="Username">    
+        <br><br>    
+        <label><b>Password:   
+        </b>    
+        </label>    
+        <input type="Password" name="Password" id="Password" placeholder="Password">    
+        <br><br>    
+        <input type="button" name="signup" id="signup" value="Sign up Here" onclick="checkValid()">       
+        <br><br>    
+        <input type="checkbox" id="check">    
+        <span>Remember me</span>    
+        <br><br>       
+    </form>     </div>
 </body>
 
 </html>

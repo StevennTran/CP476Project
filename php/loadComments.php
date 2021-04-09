@@ -21,7 +21,8 @@
         bookID CHAR(32) NOT NULL,
         booktitle CHAR(32) NOT NULL,
         comment CHAR(128) NOT NULL,
-        who CHAR(32) NOT NULL)";
+        who CHAR(32) NOT NULL),
+        timestamp CHAR(64) NOT NULL";
     $conn->query($sql);
     $conn->close();
 
@@ -40,7 +41,8 @@
     foreach ($result as $row){
         $nUsername = $row['username'];
         $nComment = $row['comment'];
-        $info = $info."|"."$nUsername,$nComment";
+        $ntimestamp = $row['timestamp']
+        $info = $info."|"."$nUsername,$nComment,$ntimestamp";
     }
     if(strlen($info) == 0){
         $info = "NO COMMENTS";

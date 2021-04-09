@@ -1,4 +1,4 @@
-# CP476Projec: Limited Books
+# CP476 Project: Limited Books
 #### Date: 2021-04-09
 #### Names: Quinn Brimley, Steven Tran, Pauline Gwozdz
 #### Student Number: 170781000, 17057470, 160393760

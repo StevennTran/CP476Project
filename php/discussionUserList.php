@@ -27,7 +27,7 @@
 
     //user ID
     $suserName = $_GET["username"];
-    $bookID = $_GET["bookID"];
+    // $bookID = $_GET["bookID"];
     // $title = $_GET["title"];
     //create the SQL query string
     $sql = "Select * from forum where username ='".$suserName."'";

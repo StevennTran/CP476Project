@@ -1,6 +1,7 @@
-# CP476Project
+# CP476Projec: Limited Books
 #### Date: 2021-04-09
 #### Names: Quinn Brimley, Steven Tran, Pauline Gwozdz
+#### Student Number: 170781000, 17057470, 160393760
 
 ### How to deploy and run
 Make sure to have php installed.

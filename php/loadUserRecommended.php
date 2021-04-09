@@ -15,23 +15,17 @@
 
     // create a table
     $conn = new mysqli($servername, $username, $password, $dbname);
-    $sql = "CREATE TABLE forum (
+    $sql = "CREATE TABLE recommend (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        username CHAR(32) NOT NULL,
-        bookID CHAR(32) NOT NULL,
-        booktitle CHAR(32) NOT NULL,
-        comment CHAR(128) NOT NULL,
-        who CHAR(32) NOT NULL),
-        timestamp CHAR(64) NOT NULL";
+        username CHAR(64) NOT NULL,
+        bookID CHAR(64) NOT NULL,
+        who CHAR(64) NOT NULL)";
     $conn->query($sql);
     $conn->close();
 
     //user ID
     $suserName = $_GET["username"];
-    // $bookID = $_GET["bookID"];
-    // $title = $_GET["title"];
-    //create the SQL query string
-    $sql = "Select * from forum where username ='".$suserName."'";
+    $sql = "Select * from recommend where username ='".$suserName."'";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,12 +33,12 @@
     $result = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 
     foreach ($result as $row){
-        $nComment = $row['comment'];
         $nbookID = $row['bookID'];
-        $info = $info."|".$nbookID.",".$nComment;
+        $nWho = $row['who'];
+        $info = $info."|"."$nbookID,$nWho";
     }
     if(strlen($info) == 0){
-        $info = "NO COMMENTS";
+        $info = "NO RECOMMENDED BOOKS";
     }
     $conn->close();
     echo $info;

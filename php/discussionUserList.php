@@ -27,7 +27,7 @@
 
     //user ID
     $suserName = $_GET["username"];
-    //$bookID = $_GET["bookID"];
+    $bookID = $_GET["bookID"];
     // $title = $_GET["title"];
     //create the SQL query string
     $sql = "Select * from forum where username ='".$suserName."'";
@@ -39,7 +39,8 @@
 
     foreach ($result as $row){
         $nComment = $row['comment'];
-        $info = $info."|".$nComment;
+        $nbookID = $row['bookID'];
+        $info = $info."|".$nbookID.",".$nComment;
     }
     if(strlen($info) == 0){
         $info = "NO COMMENTS";

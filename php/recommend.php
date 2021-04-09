@@ -23,7 +23,7 @@
     $conn->query($sql);
     $conn->close();
 
-    $sql = "Select DISTINCT username FROM recommend";
+    $sql = "Select DISTINCT username FROM users";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);

@@ -6,7 +6,7 @@
 Make sure to have php installed.
 
 1) First run XAMPP, then make sure mySQL and Apache are running on localhost
-2) Go to your web browser and type in localhost\*Insert the project alias you gave it*\
+2) Go to your web browser and type in localhost\(Insert the project alias you gave it)\
 3) Now you should see the main index page which is the sign up page
 
 ### Resources

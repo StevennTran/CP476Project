@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'symbol';
+	src:url('../fonts/et-line.woff') format('woff'),
+		url('../fonts/et-line.svg#symbol') format('svg');
+}
+
+.icon-book-open:before, .icon-chat:before, .icon-laptop:before, .icon-refresh:before, .icon-twitter:before, .icon-facebook:before{
+	font-family: 'symbol';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	display:inline-block;
+}
+.icon-laptop:before {
+	content: "\e001";
+}
+.icon-book-open:before {
+	content: "\e00b";
+}
+.icon-chat:before {
+	content: "\e049";
+}
+.icon-refresh:before {
+	content: "\e05a";
+}
+.icon-facebook:before {
+	content: "\e05d";
+}
+.icon-twitter:before {
+	content: "\e05e";
+}

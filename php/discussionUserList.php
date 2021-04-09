@@ -13,7 +13,7 @@
     $conn->query($sql);
     $conn->close();
 
-    // create a table t 
+    // create a table t f
     $conn = new mysqli($servername, $username, $password, $dbname);
     $sql = "CREATE TABLE forum (
         id INT AUTO_INCREMENT PRIMARY KEY,

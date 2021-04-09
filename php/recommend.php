@@ -30,7 +30,7 @@
     $nbookID = "'".$nbookID."'";
     $sWho = $_GET["who"];
     $sWho = "'".$sWho."'";
-    $sql = "INSERT INTO recommend (username,bookID,who) VALUES ("$suserName.",".$nbookID.",".$sWho.")";   
+    $sql = "INSERT INTO recommend (username,bookID,who) VALUES (".$suserName.",".$nbookID.",".$sWho.")";   
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);

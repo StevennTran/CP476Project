@@ -41,7 +41,7 @@
     foreach ($result as $row){
         $nUsername = $row['username'];
         $nComment = $row['comment'];
-        $ntimestamp = $row['timestamp']
+        $ntimestamp = $row['timestamp'];
         $info = $info."|"."$nUsername,$nComment,$ntimestamp";
     }
     if(strlen($info) == 0){

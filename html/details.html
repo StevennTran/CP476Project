@@ -207,7 +207,7 @@
         }
 
         function postComment() {
-
+            var postStatus = document.getElementById("postResponse");
 
             var bookNumStr = localStorage.getItem("pressed");
             var username = localStorage.getItem("user");
@@ -231,11 +231,14 @@
                     if (xhttp.status == 200) {
                         console.log(xhttp.responseText);
                         if (xhttp.responseText == "FALSE") {
-                            console.log("insert unsuccessful")
+                            postStatus.innerText = "Could not post message, please submit again in a little bit";
+                            postStatus.style.color = "red";
                         } else {
-                            console.log("inserted successfully");
-                            commentBox.innerHTML = "";
+                            // console.log("inserted successfully");
                             loadComment();
+                            commentBox.value = "";
+                            postStatus.innerText = "Comment posted successfully";
+                            postStatus.style.color = "green";
 
                         }
                     }
@@ -261,7 +264,7 @@
         <a href="search.html" class="w3-bar-item w3-button">Search</a>
     </div>
 
-    <!-- <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+    <!-- <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;widthL 500px" id="rightMenu">
             <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
             <a href="#" class="w3-bar-item w3-button">Link 1</a>
             <a href="#" class="w3-bar-item w3-button">Link 2</a>
@@ -298,7 +301,7 @@
     </div>
     <br />
 
-    <div style="display:block;background-color: rgba(255, 255, 255, 0.9);width: 80%;height: 600px;margin: 0 auto;">
+    <div style="display:block;background-color: rgba(255, 255, 255, 0.9);width: 80%;height: 620px;margin: 0 auto;">
         <p style="color: red;text-decoration: underline;font-size: 24pt;"><strong>Book Talk</strong></p>
         <div id="commentSection"></div>
         <br />
@@ -309,6 +312,7 @@
 
         <textarea id="myComment"></textarea>
         <br />
+        <div id="postResponse" style="display:block;margin-left: auto;margin-right:auto;"></div>
         <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;"
             onclick="postComment()">Post
             Comment</button>

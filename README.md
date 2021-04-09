@@ -2,18 +2,12 @@
 #### Date: 2021-04-09
 #### Names: Quinn Brimley, Steven Tran, Pauline Gwozdz
 
-### file to describe how to compile, deploy and run your project, as well as external resources used.
-
-## How to compile
-
 ### How to deploy and run
 Make sure to have php installed.
 
 1) First run XAMPP, then make sure mySQL and Apache are running on localhost
 2) Go to your web browser and type in localhost\*Insert the project alias you gave it*\
 3) Now you should see the main index page which is the sign up page
-
-
 
 ### Resources
 Create the side navigation bar: https://www.w3schools.com/w3css/w3css_sidebar.asp

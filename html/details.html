@@ -108,7 +108,7 @@
 
 
     <script>
-        var color = ["red, blue, green, orange, purple"];
+        var color = ["red", "blue", "green", "orange", "purple"];
 
         function openLeftMenu() {
             document.getElementById("leftMenu").style.display = "block";
@@ -195,11 +195,14 @@
                             console.log(xhttp.responseText);
                             var commentsList = xhttp.responseText.split("|");
                             for (let i = 1; i < commentsList.length; i++) {
-                                var comment = document.createElement("h2");
+                                var comment = document.createElement("h4");
                                 var commentSplit = commentsList[i].split(",");
                                 console.log(commentSplit);
-                                comment.innerHTML = commentSplit[0] + " said: " + commentSplit[1] + " - posted: " + commentSplit[2] + " " + commentSplit[3];
+                                var textColor = color[i % 5];
+                                console.log(color);
+                                comment.innerHTML = "<span style='color:" + textColor + ";'>" + commentSplit[0] + "</span> said: " + commentSplit[1] + " - posted: " + commentSplit[2] + " " + commentSplit[3];
                                 commentSection.appendChild(comment);
+
                             }
                         }
                     }

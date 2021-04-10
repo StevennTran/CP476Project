@@ -1,133 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-	<meta charset="utf-8">
+  <meta charset="utf-8">
 
-	<title>Book store </title>
+  <title>Book store </title>
 
-	<!-- stylesheets -->
-	<link rel="stylesheet" href="css/style.css">
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+  <script>
+    function openLeftMenu() {
+      document.getElementById("leftMenu").style.display = "block";
+    }
+
+    function closeLeftMenu() {
+      document.getElementById("leftMenu").style.display = "none";
+    }
+  </script>
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
+    <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+    <a href="main.html" class="w3-bar-item w3-button">Home</a>
+    <a href="search.html" class="w3-bar-item w3-button">Search</a>
+    <a href="details.html" class="w3-bar-item w3-button">Recent Search</a>
+  </div>
+
+  <button class="w3-button w3-teal w3-xlarge w3-left" onclick="openLeftMenu()">&#9776;</button>
 </head>
+
 <body>
 
 
-<!-- welcome -->
-<section id="home">
-				<div class="home">
-					<h1 data-wow-delay="0.4s">Welcome to bookstore!</h1>
-          			<h3 class="wow fadeInUp" data-wow-delay="0.6s">Find all your favourite <strong>books</strong> through a <strong>click</strong> of a button!</h3>
-          			<a href="#about" class="btn" data-wow-delay="0.8s">Log in!</a>
-                <a href="#about" class="btn" data-wow-delay="0.8s">Sign up!</a>
-				</div>
+  <!-- welcome -->
+  <section id="home">
+    <div class="home">
+      <h1 data-wow-delay="0.4s">Welcome to bookstore!</h1>
+      <h3 class="wow fadeInUp" data-wow-delay="0.6s">Find all your favourite <strong>books</strong> through a
+        <strong>click</strong> of a button!
+      </h3>
+      <a href="#about" class="btn" data-wow-delay="0.8s">Log in!</a>
+      <a href="#about" class="btn" data-wow-delay="0.8s">Sign up!</a>
+    </div>
 
-</section>
+  </section>
 
-<!-- about -->
-<section id="about">
-    
-					<div class="section-title">
-						<h1 class="wow fadeIn" data-wow-delay="0.2s">our company</h1>
-						<h3 class="wow fadeInUp" data-wow-delay="0.4s">Bookstore is based in Toronto</h3>
-					</div>
-					<div class="wow fadeInUp" data-wow-delay="0.6s">
-						<p>We are three students at the university of Laurier who have a passion for reading and books. When Covid-19 hit, we were all stuck inside this was the time we would read our books.</p>
-						<p>However we found it hard to find any good book recommendations online with fellow book lovers, so we came up the idea to create a site where we dicuss our favoruite books and buy new ones with a click of the button!</p>
-					</div>
+  <!-- about -->
+  <section id="about">
 
-</section>
+    <div class="section-title">
+      <h1 class="wow fadeIn" data-wow-delay="0.2s">our company</h1>
+      <h3 class="wow fadeInUp" data-wow-delay="0.4s">Bookstore is based in Toronto</h3>
+    </div>
+    <div class="wow fadeInUp" data-wow-delay="0.6s">
+      <p>We are three students at the university of Laurier who have a passion for reading and books. When Covid-19 hit,
+        we were all stuck inside this was the time we would read our books.</p>
+      <p>However we found it hard to find any good book recommendations online with fellow book lovers, so we came up
+        the idea to create a site where we dicuss our favoruite books and buy new ones with a click of the button!</p>
+    </div>
+
+  </section>
 
 
-<!-- feature -->
-<section id="feature">
-      
-      <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
-        <path d="M0 0 L50 100 L100 0 Z"></path>
-      </svg>
+  <!-- feature -->
+  <section id="feature">
 
-        <div data-wow-delay="0.4s">
-          <img src="../images/laptop.png " weight="200" height="200"></img>
-            <h1>Chat!</h1>
-            <p>Chat with book lovers around the world and get new book ideas!</p>
-        </div>
+    <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1"
+      xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
+      <path d="M0 0 L50 100 L100 0 Z"></path>
+    </svg>
 
-        <div data-wow-delay="0.8s">
-            <img src="../images/refresh.png" weight="200" height="200"></img>
-            <h1>Recycle books</h1>
-            <p>send in your book back and get sent another one with our program!</p>
-        </div>
+    <div data-wow-delay="0.4s">
+      <img src="../images/laptop.png " weight="200" height="200"></img>
+      <h1>Chat!</h1>
+      <p>Chat with book lovers around the world and get new book ideas!</p>
+    </div>
 
-        <div data-wow-delay="1.2s">
-          <img src="../images/chat.png" weight="200" height="200"></img>
-            <h1>Support</h1>
-            <p>reach out on social media or email our team with any questions!</p>
-        </div>
-        <a href="#contact" class="btn">Talk to us</a>
+    <div data-wow-delay="0.8s">
+      <img src="../images/refresh.png" weight="200" height="200"></img>
+      <h1>Recycle books</h1>
+      <p>send in your book back and get sent another one with our program!</p>
+    </div>
+
+    <div data-wow-delay="1.2s">
+      <img src="../images/chat.png" weight="200" height="200"></img>
+      <h1>Support</h1>
+      <p>reach out on social media or email our team with any questions!</p>
+    </div>
+    <a href="#contact" class="btn">Talk to us</a>
 
     </div>
-  </div>
-</section>
+    </div>
+  </section>
 
-<!-- contact!!! -->
-<section id="contact">
+  <!-- contact!!! -->
+  <section id="contact">
 
     <div class="container">
-        <form action="action_page.php">
-      
-          <label for="fname" font='Monaco'>First Name</label>
-          <br>
-          <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          <br>
-          <label for="lname"  font='Monaco'>Last Name</label>
-          <br>
-          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-          <br>
-          <label for="country" font='Monaco'>Country</label>
-          <br>
-          <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-          </select>
-          <br>
-          <label for="subject"  font='Monaco'>Subject</label>
-          <br>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          <br>
-          <input type="submit" value="Submit" class="btn">
-      
-        </form>
-      </div>
-	
-</section>
+      <form action="action_page.php">
 
-<!-- footer -->
-<footer>
+        <label for="fname" font='Monaco'>First Name</label>
+        <br>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <br>
+        <label for="lname" font='Monaco'>Last Name</label>
+        <br>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <br>
+        <label for="country" font='Monaco'>Country</label>
+        <br>
+        <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+        <br>
+        <label for="subject" font='Monaco'>Subject</label>
+        <br>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        <br>
+        <input type="submit" value="Submit" class="btn">
+
+      </form>
+    </div>
+
+  </section>
+
+  <!-- footer -->
+  <footer>
     <div>
 
-      <svg class="svgcolor-light" preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <svg class="svgcolor-light" preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%"
+        version="1.1" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 0 L50 100 L100 0 Z"></path>
       </svg>
 
-        <h2>Bookstore</h2>
-          <div data-wow-delay="0.3s">
-             <p>Don't let anything stand in the way of your passion for reading!</p>
-             <p class="copyright-text">Copyright &copy; 2021 the Laurier CP476 Students <br></p>
-          </div>
+      <h2>Bookstore</h2>
+      <div data-wow-delay="0.3s">
+        <p>Don't let anything stand in the way of your passion for reading!</p>
+        <p class="copyright-text">Copyright &copy; 2021 the Laurier CP476 Students <br></p>
+      </div>
 
-        <h2>Our office</h2>
-        <p data-wow-delay="0.6s">
-	75 University Ave W,<br>
-	Waterloo, ON N2L 3C5<br>
-	Canada
-        </p>
-        
-        </div>
+      <h2>Our office</h2>
+      <p data-wow-delay="0.6s">
+        75 University Ave W,<br>
+        Waterloo, ON N2L 3C5<br>
+        Canada
+      </p>
 
-</footer>
+    </div>
+
+  </footer>
 
 </body>
+
 </html>

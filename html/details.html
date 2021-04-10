@@ -196,7 +196,7 @@
                                 var comment = document.createElement("h2");
                                 var commentSplit = commentsList[i].split(",");
                                 console.log(commentSplit);
-                                comment.innerHTML = commentSplit[0] + " - " + commentSplit[1];
+                                comment.innerHTML = commentSplit[0] + " said: " + commentSplit[1] + " - posted: " + commentSplit[2] + " " + commentSplit[3];
                                 commentSection.appendChild(comment);
                             }
                         }

@@ -58,6 +58,7 @@ Date: 2021-04-09
 ### JS 
 
 We have a gradient that allows us to have a nice dynamic background that looks modern and slick. 
+AJAX was used for the search, dyamically load the search results.
 Use also used xhttps request to dynamically load certain things on the page, and send querys to our php files.
 We used the google books API to allow us to find and load books.
 

@@ -53,7 +53,7 @@
     </style>
     <script>
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
-
+        var bookNum = 0;
         function callNextBook(query, bookTable, comment) {
             var xhttp2 = new XMLHttpRequest();
             xhttp2.responseType = 'json';
@@ -75,6 +75,47 @@
                         else {
                             img = JSON.stringify(parsedObj.volumeInfo.imageLinks.thumbnail).replace('"', "");
                         }
+
+                        var title = JSON.stringify(parsedObj.volumeInfo.title).replaceAll('"', "");
+                        var author = "N/A";
+                        if (parsedObj.volumeInfo.authors != undefined) {
+                            var author = JSON.stringify(parsedObj.volumeInfo.authors[0]).replaceAll('"', "");
+                        }
+
+                        var publisher = "Unknown";
+                        if (JSON.stringify(parsedObj.volumeInfo.publisher) != undefined) {
+                            publisher = JSON.stringify(parsedObj.volumeInfo.publisher);
+                        }
+                        var publishDate = "Unknown Date";
+                        if (JSON.stringify(parsedObj.volumeInfo.publishedDate) != undefined) {
+                            publishDate = JSON.stringify(parsedObj.volumeInfo.publishedDate);
+                        }
+                        var description = "N/A";
+                        if (JSON.stringify(parsedObj.volumeInfo.description) != undefined) {
+                            description = JSON.stringify(parsedObj.volumeInfo.description);
+                        }
+                        var price = "N/A";
+                        var currency = "N/A";
+                        var buyLink = "N/A";
+                        if (JSON.stringify(parsedObj.saleInfo.saleability) == '"FOR_SALE"') {
+                            price = JSON.stringify(parsedObj.saleInfo.retailPrice.amount);
+                            currency = JSON.stringify(parsedObj.saleInfo.retailPrice.currencyCode);
+                            buyLink = JSON.stringify(parsedObj.saleInfo.buyLink).replaceAll('"', "");
+                        }
+                        var bookID = JSON.stringify(parsedObj.id);
+
+                        // Storing the Data
+                        localStorage.setItem("rectitle" + bookNum.toString(), title.replaceAll('"', ""));
+                        localStorage.setItem("recauthor" + bookNum.toString(), author.replaceAll('"', ""));
+                        localStorage.setItem("recimg" + bookNum.toString(), img.replaceAll('"', ""));
+                        localStorage.setItem("recpublisher" + bookNum.toString(), publisher.replaceAll('"', ""));
+                        localStorage.setItem("recpublishDate" + bookNum.toString(), publishDate.replaceAll('"', ""));
+                        localStorage.setItem("recdescription" + bookNum.toString(), description.replaceAll('"', ""));
+                        localStorage.setItem("recprice" + bookNum.toString(), price.replaceAll('"', ""));
+                        localStorage.setItem("reccurrency" + bookNum.toString(), currency.replaceAll('"', ""));
+                        localStorage.setItem("recbuyLink" + bookNum.toString(), buyLink.replaceAll('"', ""));
+                        localStorage.setItem("recbookID" + bookNum.toString(), bookID.replaceAll('"', ""));
+
                         var thumbnail = document.createElement("img");
                         thumbnail.src = img;
                         var tr = document.createElement("tr");
@@ -84,9 +125,34 @@
                         bookTable.appendChild(tr);
 
                         td = document.createElement("td");
-                        td.appendChild(document.createTextNode(comment));
+                        td.appendChild(document.createTextNode(title + " ~ " + comment));
                         tr.appendChild(td);
                         bookTable.appendChild(tr);
+
+                        td = document.createElement("td");
+                        var detailButton = document.createElement("Button");
+                        detailButton.innerHTML = "Detail";
+                        detailButton.id = bookNum.toString();
+                        detailButton.onclick = function () {
+                            localStorage.setItem("pressed", this.id);
+                            localStorage.setItem("title" + this.id, localStorage.getItem("redtitle" + this.id));
+                            localStorage.setItem("author" + this.id, localStorage.getItem("recauthor" + this.id));
+                            localStorage.setItem("img" + this.id, localStorage.getItem("recimg" + this.id));
+                            localStorage.setItem("publisher" + this.id, localStorage.getItem("recpublisher" + this.id));
+                            localStorage.setItem("publishDate" + this.id, localStorage.getItem("recpublishDate" + this.id));
+                            localStorage.setItem("description" + this.id, localStorage.getItem("recdescription" + this.id));
+                            localStorage.setItem("price" + this.id, localStorage.getItem("recprice" + this.id));
+                            localStorage.setItem("currency" + this.id, localStorage.getItem("reccurrency" + this.id));
+                            localStorage.setItem("buyLink" + this.id, localStorage.getItem("recbuyLink" + this.id));
+                            localStorage.setItem("bookID" + this.id, localStorage.getItem("recbookID" + this.id));
+
+                            location.href = "details.html";
+                        }
+                        bookNum += 1;
+                        td.appendChild(detailButton);
+                        tr.appendChild(td);
+                        bookTable.appendChild(tr);
+
                     }
                 }
             }

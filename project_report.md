@@ -10,15 +10,43 @@ Date: 2021-04-09
 
 ### Index
 
-![Screen shot demo Index page](images/Index.png){width=600px}
+![Screen shot demo Main page](images/Index.png){width=600px}
 
-<p>Upon starting the web application, the user is greeted with the main Page</p>
-<p>The user has the option to move sign up / log in once the applicaion is launched</p>
-<p>Upon scrolling, the user can see the about us section that describes our company</p>
+![Screen shot demo about us on the Main page](images/about.png){width=600px}
 
-![Screen shot demo Index page](images/about.png){width=600px}
+![Screen shot demo what we do on the Main page](images/section3.png){width=600px}
 
-<p>The user has the option to move sign up / log in once the applicaion is launched</p>
+![Screen shot demo contact us on the Main page](images/contact.png){width=600px}
+
+![Screen shot demo the footer on the Main page](images/footer.png){width=600px}
+
+<p>
+    Our main Page allows users to get to know what our company is about, it sets up links to sign up or login if they
+    already have an account
+    and tells them what this website is about but how company came about. If they have any questions, we have a button
+    "talk to us"
+    to let them reach out to us with any concerns in the contact form below. We set up 5 sections for the main page so
+    that it would be easier
+    for users to get the information they needed instead of clicking a bunch of links to get them what they want.
+
+    How we did the gradient background for our index section was by using CSS. Under the function background I used the
+    property "linear-gradient"
+    and choose the colours we wanted to use on the website. After the colours are choosen I used an animation property
+    so that it switches between
+    the colours infinite.
+
+    How the contact form was created was by creating a form and then labeling every inout we needed from them such as
+    name, email and etc.
+    We also set up a select option for country, at the moment we only have 3 options for country but they can select any
+    of the 3 when completing the form.
+
+    The whole main page was mainly focussed on styling through our CSS file, and includes all the little things such as
+    a hover over a button, the background,
+    and the transition from which section which we used svg to create that cut slick look for a smooth transition. What
+    we used in our main, we then took to
+    use to help implement our other pages as well to keep a theme.
+
+</p>
 
 ### Sign up
 
@@ -34,7 +62,9 @@ Date: 2021-04-09
 
 ### Search
 
-![Screen shot demo Search page](images/Search.png){width=600px}
+![Screen shot demo Search page](images/Search1.png){width=600px}
+
+![Screen shot demo Search page](images/Search2.png){width=600px}
 
 <p>Users can search for any book here and view details about them by clicking the "Details" button </p>
 
@@ -52,12 +82,11 @@ Date: 2021-04-09
 <p>The user can also find where to buy the book by clicking the buy button </p>
 <p>Lastly the user can comment about the book, this shows all comments by other users and there own comments with timestamps of when the comment was posted</p>
 
-
 ## Client side
 
-### JS 
+### JS
 
-We have a gradient that allows us to have a nice dynamic background that looks modern and slick. 
+We have a gradient that allows us to have a nice dynamic background that looks modern and slick.
 AJAX was used for the search, dyamically load the search results.
 Use also used xhttps request to dynamically load certain things on the page, and send querys to our php files.
 We used the google books API to allow us to find and load books.
@@ -71,7 +100,7 @@ and either check to see if the user is actually saying who they are or sign them
 
 ### Details script
 
-Here the server will get the bookID and load all the details about it. It gives the book Title, the cover photo, the author, the publisher, and a 
+Here the server will get the bookID and load all the details about it. It gives the book Title, the cover photo, the author, the publisher, and a
 decription of the book. We also have a button that if the book is aviable to be purchesed online, it will take them straight there.
 
 We have the recommend section. Here users can recommend books to other users, there is a drop down that has all users in the db and will allow the user
@@ -83,17 +112,22 @@ With other users as well.
 
 ### User profile
 
-Here the user can view there entire comment history as well as view all books that have been recommended to them. 
+Here the user can view there entire comment history as well as view all books that have been recommended to them.
 If the user wants to check out the book thats been recommended they can click the details button which will take them to the details page.
 This all gets pulled from the db.
 
 ## Database
 
-Database has three tables, users, forum, recommend. 
+Database has three tables, users, forum, recommend.
+
+![The 3 databses used](images/threeTables.png){width=600px}
 
 ### User Table
-The user table stores users names and users passwords that are enycrpted and saved on the db. 
+
+The user table stores users names and users passwords that are enycrpted and saved on the db.
 It also contain roles ID for if they are a site admin or a normal user
+
+![User Table](images/usersTable.png){width=600px}
 
 ### Forum Table
 
@@ -101,13 +135,14 @@ This table has the username as a forgin key in it. Here we store all the users c
 When a user makes a comment it stores who made the comment, with the bookID and book title and a time stamp.
 We can use this time stamp to see when comments are made.
 
+![Forum Table](images/forumTable.png){width=600px}
 
 ### Recommend Table
 
 The recommended table keeps track of recommend books. Users can recommend books to one another so this table keeps track
 of the recommend books
 
-
+![Recommend Table](images/recommendTable.png){width=600px}
 
 **References**
 

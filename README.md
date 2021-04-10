@@ -18,3 +18,5 @@ Created logo: https://www.freelogodesign.org/manager/showcase/27e7d0b60aa4456fa2
 Seach Button: https://www.w3schools.com/howto/howto_css_search_button.asp
 
 Animation for search bar: https://www.w3schools.com/js/js_htmldom_animate.asp
+
+Contact Form for contact us: https://www.w3schools.com/howto/howto_css_contact_form.asp

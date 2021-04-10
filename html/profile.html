@@ -13,6 +13,24 @@
             overflow-y: auto;
         }
 
+        .columnLeft {
+            float: left;
+            width: 48%;
+            padding: 10px;
+        }
+
+        .columnRight {
+            float: right;
+            width: 48%;
+            padding: 10px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
         body {
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 500% 500%;
@@ -76,6 +94,38 @@
             return bookTable;
         }
 
+        function loadRecommend() {
+            var recommendSection = document.getElementById("recommendedBook");
+            var username = localStorage.getItem("user");
+
+            // var myName = document.getElementById("name");
+            // myName.innerHTML = username + "'s profile";
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.responseType = 'text';
+            xhttp.open("post", "../php/loadUserRecommended.php?username=" + username, true);
+            xhttp.onreadystatechange = function () {
+                var bookTable = document.createElement("table");
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        console.log(xhttp.responseText);
+                        var commentsList = xhttp.responseText.split("|");
+
+                        for (let i = 1; i < commentsList.length; i++) {
+
+
+                            var temp = commentsList[i].split(",")
+                            // console.log(temp);
+                            var query = "https://www.googleapis.com/books/v1/volumes/" + temp[0] + "?key=" + key;
+                            bookTable = callNextBook(query, bookTable, "Recomended by: " + temp[1]);
+                        }
+                        recommendSection.appendChild(bookTable);
+                    }
+                }
+            };
+            xhttp.send();
+        }
+
         function loadComment() {
 
             document.body.style.backgroundImage = "url('../images/backdrop2.png')";
@@ -109,6 +159,7 @@
                 }
             };
             xhttp.send();
+            loadRecommend();
         }
     </script>
 
@@ -118,16 +169,19 @@
     <h1>
         <div id="name"></div>
     </h1>
-    <table>
-        <tr>
-            <td>Change Username: </td>
-            <td><input style="width: 200px;"></td>
-        </tr>
-    </table>
-    <br />
-    <h2><strong>My comments</stong>
-    </h2>
-    <div class="informationDiv" id="showComments"></div>
+
+    <div class="row">
+        <div class="columnLeft">
+            <h2><strong>My comments</stong>
+            </h2>
+            <div class="informationDiv" id="showComments"></div>
+        </div>
+        <div class="columnRight">
+            <h2>Recommended</h2>
+            <div class="informationDiv" id="recommendedBook"></div>
+        </div>
+    </div>
+
 </body>
 
 </html>

@@ -25,7 +25,7 @@
 
     //user ID
     $suserName = $_GET["username"];
-    $sql = "Select * from recommend where username ='".$suserName."'";
+    $sql = "Select * from recommend where who ='".$suserName."'";
               
     $info = "";
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -34,8 +34,8 @@
 
     foreach ($result as $row){
         $nbookID = $row['bookID'];
-        $nWho = $row['who'];
-        $info = $info."|"."$nbookID,$nWho";
+        $nUsername = $row['username'];
+        $info = $info."|"."$nbookID,$nUsername";
     }
     if(strlen($info) == 0){
         $info = "NO RECOMMENDED BOOKS";

@@ -9,6 +9,7 @@ html,body {
   width: 100%;
   overflow-x: hidden;
   font-size: 100%;
+  text-align: center;
   
 }
 
@@ -63,6 +64,7 @@ footer {
   align-items: center;
   text-align: center;
   height: 100vh;
+  padding: 500px 360px;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
@@ -209,4 +211,13 @@ footer a:hover {
   fill: white;
   stroke: white;
   stroke-width: 0;
+}
+
+img{
+	font-family: 'symbol';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	display:inline-block;
 }

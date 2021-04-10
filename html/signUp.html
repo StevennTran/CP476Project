@@ -3,13 +3,13 @@
 
 <head>
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="css/sign.css"> 
+    <link rel="stylesheet" type="text/css" href="css/sign.css">
 
     <script>
         function checkValid() {
-            var sUsername = document.getElementById("username").value;
-            var sPassword = document.getElementById("password").value;
-            var err = document.getElementById("errorMsg");
+            var sUsername = document.getElementById("Uname").value;
+            var sPassword = document.getElementById("Pass").value;
+            var err = document.getElementById("log");
 
             var xhttp = new XMLHttpRequest();
 
@@ -38,25 +38,27 @@
 
 <body>
     <h2>Welcome to the Sign up page!</h2>
-    <h2>Please sign up below</h2><br> 
-    <div class="login">    
-    <form id="login" method="get" action="signUp.php">    
-        <label><b>Username:     
-        </b>    
-        </label>    
-        <input type="text" name="Username" id="Username" placeholder="Username">    
-        <br><br>    
-        <label><b>Password:   
-        </b>    
-        </label>    
-        <input type="Password" name="Password" id="Password" placeholder="Password">    
-        <br><br>    
-        <input type="button" name="signup" id="signup" value="Sign up Here" onclick="checkValid()">       
-        <br><br>    
-        <input type="checkbox" id="check">    
-        <span>Remember me</span>    
-        <br><br>       
-    </form>     </div>
+    <h2>Please sign up below</h2><br>
+    <div class="login">
+        <form id="login" method="get" action="signUp.php">
+            <label><b>Username:
+                </b>
+            </label>
+            <input type="text" name="Username" id="Uname" placeholder="Username">
+            <br><br>
+            <label><b>Password:
+                </b>
+            </label>
+            <input type="Password" name="Password" id="Pass" placeholder="Password">
+            <br><br>
+            <input type="button" name="signup" id="signup" value="Sign up Here" onclick="checkValid()">
+            <br><br>
+            <input type="checkbox" id="check">
+            <span>Remember me</span>
+            <br><br>
+        </form>
+        <div id="log"></div>
+    </div>
 </body>
 
 </html>

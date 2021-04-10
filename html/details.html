@@ -304,7 +304,30 @@
         }
 
         function sendRecommend() {
+            var bookNumStr = localStorage.getItem("pressed");
+            var username = localStorage.getItem("user");
+            username.replace(" ", "+?+?")
 
+            var bookID = localStorage.getItem("bookID" + bookNumStr);
+
+            var who = document.getElementById("who").value;
+
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("post", "../php/recommend.php?username=" + username + "&bookID=" + bookID + "&who=" + who, true);
+            xhttp.responseType = 'text';
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        console.log(xhttp.responseText)
+                    }
+                }
+            };
+            xhttp.send();
+        }
+
+        function displayRecommend() {
+            document.getElementById("recForm").style.display = "block";
         }
 
 
@@ -353,13 +376,12 @@
         <br />
         <div id="description" style="margin-left:15px;font-size: 18pt;">Testing</div>
         <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;color: goldenrod;"
-            onclick="sendRecommend()">Recommend
-            Book</button>
+            onclick="displayRecommend()">Recommend Book</button>
     </div>
     <br />
 
-    <div class="informationDiv">
-        <form action="../php/recommend.php">
+    <div class="informationDiv" id="recForm" style="display: none;">
+        <form>
             <table>
                 <tr>
                     <td><strong>User Name: </strong></td>
@@ -396,8 +418,7 @@
         <br />
         <div id="postResponse" style="display:block;margin-left: auto;margin-right:auto;"></div>
         <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;"
-            onclick="postComment()">Post
-            Comment</button>
+            onclick="postComment()">Post Comment</button>
 
     </div>
     <br />

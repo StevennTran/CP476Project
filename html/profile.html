@@ -69,17 +69,6 @@
                         td.appendChild(document.createTextNode(comment));
                         tr.appendChild(td);
                         bookTable.appendChild(tr);
-
-                        // Add titles and stuff
-                        // var title = JSON.stringify(parsedObj.volumeInfo.title).replaceAll('"', "");
-                        // var author = "N/A";
-                        // if (parsedObj.volumeInfo.authors != undefined) {
-                        //     var author = JSON.stringify(parsedObj.volumeInfo.authors[0]).replaceAll('"', "");
-                        // }
-                        // td = document.createElement("td");
-                        // td.appendChild(document.createTextNode(title + " - " + author));
-                        // tr.appendChild(td);
-                        // bookTable.appendChild(tr);
                     }
                 }
             }
@@ -114,10 +103,6 @@
                             // console.log(temp);
                             var query = "https://www.googleapis.com/books/v1/volumes/" + temp[0] + "?key=" + key;
                             bookTable = callNextBook(query, bookTable, temp[1]);
-                            // td = document.createElement("td");
-                            // td.appendChild(document.createTextNode(temp[1]));
-                            // tr.appendChild(td);
-                            // bookTable.appendChild(tr);
                         }
                         commentSection.appendChild(bookTable);
                     }

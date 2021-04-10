@@ -12,7 +12,11 @@ Date: 2021-04-09
 
 <p>Upon starting the web application, the user is greeted with the main Page</p>
 <p>The user has the option to move sign up / log in once the applicaion is launched</p>
-<p>Upon scrolling the user can </p>
+<p>Upon scrolling, the user can see the about us section that describes our company</p>
+
+![Screen shot demo Index page](images/about.png){width=600px}
+
+<p>The user has the option to move sign up / log in once the applicaion is launched</p>
 
 ### Sign up
 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Quinn Brimley (170781000), Pauline Gwozdz (160393760), Steven Tran(170574740)" />
+  <meta name="dcterms.date" content="2021-04-10" />
+  <title>CP476 Project: Limited Books </title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="proposal.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CP476 Project: Limited Books<br></h1>
+<p class="author">Quinn Brimley (170781000), Pauline Gwozdz (160393760), Steven Tran(170574740)</p>
+<p class="date">2021-04-10</p>
+</header>
+<h2 id="introduction">Introduction</h2>
+<p>We wanted to make an online book management system where users can view and purchase their favourite books from the comfort of their own home. The idea was inspired by the pandemic; where people are stuck inside with nothing to do. What better way to spend your quarantine, then sitting back and enjoying a nice book! 😊</p>
+<h2 id="problem-solving-and-algorithms">Problem solving and algorithms</h2>
+<ol class="incremental" type="1">
+<li><p><strong>Application data collection</strong><br> We are going to use the <strong>Google Books API</strong> → <span style="color: #5991ff">http://googleapis.com/books/v1/volumes?q= </span> query results of book information. The queried results return a <span style="color: #e854cf">JSON</span> formatted book, that contains the title of the book, the author, the genre, and the cover photo of the image as well.</p></li>
+<li><p><strong>Storing the books</strong><br> We are going to be storing the books on the <span style="color: #0075ab">mySQL</span> database if the user chooses to save the queried book into their favourites list. The database will keep track of both the user login information, along with the information/settings attatched to the accounts.</p></li>
+<li><p><strong>Displaying the book information on the page</strong><br> Once the query to the API is successful, the returned <span style="color: #e854cf">JSON</span> contains a URL to the cover of the book –&gt; We would only need to make another HTTP request using <span style="color: #ff9a52">AJAX</span> to fetch the image from the web URL and display it to the book result screen. As for the remainder of the information, the returned <span style="color: #e854cf">JSON</span> contains all of the neccessary information, and we need only to parse the <span style="color: #e854cf">JSON</span> string and display the correctly formated information onto the client page.</p></li>
+</ol>
+<h2 id="system-design">System Design</h2>
+<ol class="incremental" type="1">
+<li><p><strong>System Design Diagram: </strong><br><img src="sourceCode/images/webtier.png" style="width:80.0%" alt="System Design Diagram" /></p>
+<ul class="incremental">
+<li>Once the web application is launched, the system initialize the DOM elements and make <span style="color: #d93838">JQuery</span> calls to the APIs to fetch the infomation</li>
+<li>The <strong> 1st tier </strong>of the system design consists of what the user can see:</li>
+<li>The user can interact with the <span style="color: #4da5f7">HTML</span> webpage through their browser (while under the hood, the system is communicating through <span style="color: #ff5f59">JavaScript</span> and <span style="color: #ff9a52">AJAX</span> to talk to the server)</li>
+<li>The <strong>2nd tier </strong>of the system design is where the heavy calculations and workload is done</li>
+<li>The system will contain a backend made up of <span style="color: #be69fa">php</span> scripts that launch the correct webpages and send and receive API calls using <span style="color: #d93838">JQuery</span> and <span style="color: #ff5f59">JavaScript</span></li>
+<li>The <strong>3rd tier</strong> of the system design contains the local storage * After receiving the information from the web, the information is then stored onto the local storage of the application where the user can retreive these files when neccessary (stored onto <span style="color: #0075ab">mySQL</span> database) <br><br></li>
+</ul></li>
+<li><p><strong>Architecture Diagram: </strong><br><img src="sourceCode/images/components.png" style="width:80.0%" alt="Architecture Diagram" /></p>
+<ul class="incremental">
+<li>Upon launching the application, the user is greeted with a <strong> login/sign up page </strong> where they can enter their credentials and login to their account</li>
+<li>If login/sign up is successful, then the user is taken to the <strong>search page </strong> where they can continue to use the site</li>
+<li>The <strong>search page</strong> contains a button to query their book, and an interactive UI where the user can select one of these book to view in detail</li>
+<li>The search page is where the API calls will be made, where when the user searches for books that they are interested in, the system makes a call to the API and gets the information from the <em>Google Books API </em> * Upon clicking on a book, then the system will <strong>load the necessary information onto the webpage </strong> and allow the user to start a <strong>discussion</strong> for selected book, add to their <strong>favourites list</strong>, or click on a button where they can </strong>purchase</strong> the book (will navigate to the Google Books web application to buy thier book if it’s available) <br><br></li>
+</ul></li>
+<li><p><strong>Features to implement:</strong> _ <strong>Search for books </strong>- Will be using a web API to make HTTP requests to the Google Books API and get book information _ <strong>Redirect Users to where they can buy the books</strong> _ Will implement a button located on the details page that makes another http call to the Google Books API, so you can buy your favourite book! :) _ <strong>Create discussions for books</strong> _ Talk about the plot and thoughts about the book! _ Recommend books with a touch of button (selecting users who are registerd to recommend the book to) <br><br></p></li>
+<li><p><strong>Tools to be used in the project: </strong></p>
+<ul class="incremental">
+<li><strong>CGI programming:</strong>
+<ul class="incremental">
+<li><span style="color: #be69fa">php</span> - Create a <span style="color: #0075ab">mySQL</span> database with tables to store the user information</li>
+<li><span style="color: #ff9a52">AJAX</span> - Will be used to implement many of the features</li>
+</ul></li>
+<li><strong>Server side: </strong>
+<ul class="incremental">
+<li>local <span style="color: #0075ab">mySQL</span> database to store:
+<ul class="incremental">
+<li>The favourited books</li>
+<li>User login information</li>
+<li>Discussions</li>
+<li>Most Previously viewed book</li>
+</ul></li>
+</ul></li>
+<li><strong>Client side:</strong>
+<ul class="incremental">
+<li><span style="color: #ff5f59">JavaScript</span>, <span style="color: #d93838">JQuery</span>, <span style="color: #4da5f7">HTML</span>, <span style="color: #57bd40">CSS</span></li>
+<li>API call (Google Books) Will be used to make HTTP requests to get book information and display it to the user</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="milestones-schedule">Milestones &amp; schedule</h2>
+<p>All the tasks will be worked on throughout the remainder of the course by everyone. The leader of each milestone meeting will cooridinate what is to be done before the start of the next milestone meeting and check up on everyone’s progress thus far.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Task ID</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Due date</th>
+<th style="text-align: center;">Lead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Project research &amp; team up</td>
+<td style="text-align: center;">Wednesday of week 9</td>
+<td style="text-align: center;">Steve</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Project proposal</td>
+<td style="text-align: center;">Sunday of week 10</td>
+<td style="text-align: center;">Pauline</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Get the layout of HTML and PHP scripts working</td>
+<td style="text-align: center;">Friday of Week 10</td>
+<td style="text-align: center;">Quinn</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Set up datbases and connect everything together</td>
+<td style="text-align: center;">Friday of Week 11</td>
+<td style="text-align: center;">Quinn</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Project documentation creation</td>
+<td style="text-align: center;">Thursday of week 13</td>
+<td style="text-align: center;">Pauline</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Project submission</td>
+<td style="text-align: center;">Saturday of week 13</td>
+<td style="text-align: center;">Steve</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<ol class="incremental" type="1">
+<li><a href="https://openlibrary.org/dev/docs/api/books">OpenLibrary Book API</a></li>
+<li><a href="https://www.chapters.indigo.ca/en-ca/">Indigo</a></li>
+<li><a href="https://developers.google.com/books/docs/v1/using">Google Book API</a></li>
+<li><a href="https://www.clipartmax.com/middle/m2i8b1A0m2m2N4A0_image-of-closed-book-clipart-white-book-icon-png/">Closed Book Image</a></li>
+<li><a href="https://www.pikpng.com/pngvi/iRobRbw_call-number-draw-a-simple-book-clipart/">Open Book Image</a></li>
+</ol>
+<h2 id="appendices">Appendices</h2>
+<ol class="incremental" type="1">
+<li>Password Encryption (Built-in <span style="color: #be69fa">php</span> hashing) - To securely store the password in the database</li>
+<li>Will implement HTTPS for safer transactions</li>
+</ol>
+</body>
+</html>

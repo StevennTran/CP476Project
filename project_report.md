@@ -10,15 +10,15 @@ Date: 2021-04-09
 
 ### Index
 
-![Screen shot demo Main page](images/Index.png){width=600px}
+![Screen shot demo Main page](sourceCode/images/Index.png){width=600px}
 
-![Screen shot demo about us on the Main page](images/about.png){width=600px}
+![Screen shot demo about us on the Main page](sourceCode/images/about.png){width=600px}
 
-![Screen shot demo what we do on the Main page](images/section3.png){width=600px}
+![Screen shot demo what we do on the Main page](sourceCode/images/section3.png){width=600px}
 
-![Screen shot demo contact us on the Main page](images/contact.png){width=600px}
+![Screen shot demo contact us on the Main page](sourceCode/images/contact.png){width=600px}
 
-![Screen shot demo the footer on the Main page](images/footer.png){width=600px}
+![Screen shot demo the footer on the Main page](sourceCode/images/footer.png){width=600px}
 
 <p>
     Our main Page allows users to get to know what our company is about, it sets up links to sign up or login if they
@@ -50,33 +50,33 @@ Date: 2021-04-09
 
 ### Sign up
 
-![Screen shot demo Sign up page](images/SignUp.png){width=600px}
+![Screen shot demo Sign up page](sourceCode/images/SignUp.png){width=600px}
 
 <p>Here users can Sign up to use our website, this will register the user into our db </p>
 
 ### Login
 
-![Screen shot demo Login Page](images/Login.png){width=600px}
+![Screen shot demo Login Page](sourceCode/images/Login.png){width=600px}
 
  <p>Here users can Login using there user name and password (which the password is encrypted) and signs them in </p>
 
 ### Search
 
-![Screen shot demo Search page](images/Search1.png){width=600px}
+![Screen shot demo Search page](sourceCode/images/Search1.png){width=600px}
 
-![Screen shot demo Search page](images/Search2.png){width=600px}
+![Screen shot demo Search page](sourceCode/images/Search2.png){width=600px}
 
 <p>Users can search for any book here and view details about them by clicking the "Details" button </p>
 
 ### Profile
 
-![Screen shot demo Profile](images/Profile.png){width=600px}
+![Screen shot demo Profile](sourceCode/images/Profile.png){width=600px}
 
 <p>User profile shows all comments made by the user and all recommended books that others have recommended to them</p>
 
 ### Details
 
-![Screen shot demo Details](images/Details.png){width=600px}
+![Screen shot demo Details](sourceCode/images/Details.png){width=600px}
 
 <p>Here users can see details about the book, like a description and the publisher.</p>
 <p>The user can also find where to buy the book by clicking the buy button </p>
@@ -120,14 +120,14 @@ This all gets pulled from the db.
 
 Database has three tables, users, forum, recommend.
 
-![The 3 databses used](images/threeTables.png){width=600px}
+![The 3 databses used](sourceCode/images/threeTables.png){width=600px}
 
 ### User Table
 
 The user table stores users names and users passwords that are enycrpted and saved on the db.
 It also contain roles ID for if they are a site admin or a normal user
 
-![User Table](images/usersTable.png){width=600px}
+![User Table](sourceCode/images/usersTable.png){width=600px}
 
 ### Forum Table
 
@@ -135,14 +135,14 @@ This table has the username as a forgin key in it. Here we store all the users c
 When a user makes a comment it stores who made the comment, with the bookID and book title and a time stamp.
 We can use this time stamp to see when comments are made.
 
-![Forum Table](images/forumTable.png){width=600px}
+![Forum Table](sourceCode/images/forumTable.png){width=600px}
 
 ### Recommend Table
 
 The recommended table keeps track of recommend books. Users can recommend books to one another so this table keeps track
 of the recommend books
 
-![Recommend Table](images/recommendTable.png){width=600px}
+![Recommend Table](sourceCode/images/recommendTable.png){width=600px}
 
 **References**
 

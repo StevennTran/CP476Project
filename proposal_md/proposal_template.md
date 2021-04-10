@@ -21,7 +21,7 @@ We wanted to make an online book management system where users can view and purc
 
 ## System Design
 
-1. <strong>System Design Diagram: </strong><br>![System Design Diagram](images/webtier.png){width=80%}
+1. <strong>System Design Diagram: </strong><br>![System Design Diagram](sourceCode/images/webtier.png){width=80%}
 
    - Once the web application is launched, the system initialize the DOM elements and make <span style="color: #d93838">JQuery</span> calls to the APIs to fetch the infomation
    - The <strong> 1st tier </strong>of the system design consists of what the user can see:
@@ -31,7 +31,7 @@ We wanted to make an online book management system where users can view and purc
    - The <strong>3rd tier</strong> of the system design contains the local storage \* After receiving the information from the web, the information is then stored onto the local storage of the application where the user can retreive these files when neccessary (stored onto <span style="color: #0075ab">mySQL</span> database)
      <br><br>
 
-2. <strong>Architecture Diagram: </strong><br>![Architecture Diagram](images/components.png){width=80%}
+2. <strong>Architecture Diagram: </strong><br>![Architecture Diagram](sourceCode/images/components.png){width=80%}
 
    - Upon launching the application, the user is greeted with a <strong> login/sign up page </strong> where they can enter their credentials and login to their account
    - If login/sign up is successful, then the user is taken to the <strong>search page </strong> where they can continue to use the site

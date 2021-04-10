@@ -1,19 +1,19 @@
-body {
-  background: #ffffff;
-  font-family: "Monaco", sans-serif;
-  font-weight: 400;
-}
+body
+	{
+		background: #ffffff;
+   font-family: 'Monaco', sans-serif;
+    font-weight: 400;
+	}
 
-html,
-body {
+html,body {
   width: 100%;
   overflow-x: hidden;
   font-size: 100%;
   text-align: center;
+  
 }
 
-h1,
-h3 {
+h1,h3 {
   font-weight: 500;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
@@ -137,6 +137,7 @@ footer {
   display: inline-block;
 }
 
+
 #feature .btn {
   display: block;
   width: 200px;
@@ -200,11 +201,12 @@ footer .copyright-text {
   padding-top: 10px;
 }
 
+
 #feature div {
-  width: 30%;
-  margin-left: 3%;
-  display: inline-block;
-}
+    width: 30%;
+    margin-left: 3%;
+    display: inline-block;
+  }
 
 .svgcolor-light {
   position: relative;
@@ -216,11 +218,24 @@ footer .copyright-text {
   stroke-width: 0;
 }
 
-img {
-  font-family: "symbol";
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  line-height: 1;
-  display: inline-block;
+img{
+	font-family: 'symbol';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	display:inline-block;
 }
+
+input[type=text], select, textarea {
+    width: 50%; /* Full width */
+    padding: 15px; /* Some padding */ 
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  
+  
+  /* Add a background color and some padding around the form */
+  .container {
+    padding: 20px;
+  }

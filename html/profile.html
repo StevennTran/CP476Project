@@ -16,7 +16,7 @@
     <script>
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
 
-        function callNextBook(query, bookTable) {
+        function callNextBook(query, bookTable, comment) {
             var xhttp2 = new XMLHttpRequest();
             xhttp2.responseType = 'json';
             xhttp2.open("get", query, true);
@@ -45,6 +45,10 @@
                         tr.append(td)
                         bookTable.appendChild(tr);
 
+                        td = document.createElement("td");
+                        td.appendChild(document.createTextNode(comment));
+                        tr.appendChild(td);
+                        bookTable.appendChild(tr);
 
                         // Add titles and stuff
                         // var title = JSON.stringify(parsedObj.volumeInfo.title).replaceAll('"', "");
@@ -83,11 +87,11 @@
                             var temp = commentsList[i].split(",")
                             // console.log(temp);
                             var query = "https://www.googleapis.com/books/v1/volumes/" + temp[0] + "?key=" + key;
-                            bookTable = callNextBook(query, bookTable);
-                            td = document.createElement("td");
-                            td.appendChild(document.createTextNode(title + " - " + author));
-                            tr.appendChild(td);
-                            bookTable.appendChild(tr);
+                            bookTable = callNextBook(query, bookTable, temp[1]);
+                            // td = document.createElement("td");
+                            // td.appendChild(document.createTextNode(temp[1]));
+                            // tr.appendChild(td);
+                            // bookTable.appendChild(tr);
                         }
                         commentSection.appendChild(bookTable);
                     }

@@ -4,7 +4,9 @@ Author: Quinn Brimley, Steven Tran, Pauline Gwozdz
 
 Date: 2021-04-09
 
-## Limited Books Website
+# Limited Books Website
+
+## Pages
 
 ### Index
 
@@ -49,6 +51,62 @@ Date: 2021-04-09
 <p>Here users can see details about the book, like a description and the publisher.</p>
 <p>The user can also find where to buy the book by clicking the buy button </p>
 <p>Lastly the user can comment about the book, this shows all comments by other users and there own comments with timestamps of when the comment was posted</p>
+
+
+## Client side
+
+### JS 
+
+We have a gradient that allows us to have a nice dynamic background that looks modern and slick. 
+Use also used xhttps request to dynamically load certain things on the page, and send querys to our php files.
+We used the google books API to allow us to find and load books.
+
+## Server Side
+
+### Login And Sign Up Scripts
+
+On the server side we deal with the users sign up and login, were we take the user name and password from the user (passwords are encrpyed)
+and either check to see if the user is actually saying who they are or sign them up by storing there details. User also cant use the same username as someone else
+
+### Details script
+
+Here the server will get the bookID and load all the details about it. It gives the book Title, the cover photo, the author, the publisher, and a 
+decription of the book. We also have a button that if the book is aviable to be purchesed online, it will take them straight there.
+
+We have the recommend section. Here users can recommend books to other users, there is a drop down that has all users in the db and will allow the user
+to pick who they want to recommend a book too. After clicking 'send recommendation' it will store the bookID with the user who recommended it to you.
+These can later be viewed in the profile.
+
+We have the 'book talk' section that allows people to talk about the books. Here the user can leave a comment which will be time stamped and displayed real time
+With other users as well.
+
+### User profile
+
+Here the user can view there entire comment history as well as view all books that have been recommended to them. 
+If the user wants to check out the book thats been recommended they can click the details button which will take them to the details page.
+This all gets pulled from the db.
+
+## Database
+
+Database has three tables, users, forum, recommend. 
+
+### User Table
+The user table stores users names and users passwords that are enycrpted and saved on the db. 
+It also contain roles ID for if they are a site admin or a normal user
+
+### Forum Table
+
+This table has the username as a forgin key in it. Here we store all the users comments in the 'Book talk' section.
+When a user makes a comment it stores who made the comment, with the bookID and book title and a time stamp.
+We can use this time stamp to see when comments are made.
+
+
+### Recommend Table
+
+The recommended table keeps track of recommend books. Users can recommend books to one another so this table keeps track
+of the recommend books
+
+
 
 **References**
 

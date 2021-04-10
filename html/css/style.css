@@ -13,17 +13,22 @@ html,body {
   
 }
 
-h1,h2,h3 {
+h1,h3 {
   font-weight: 500;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
   padding: 14px 36px;
 }
 
+h2 {
+  color: #ffffff;
+}
+
 p {
   color: #828282;
-  letter-spacing: 0.8px;
-  line-height: 28px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  font-size: 17px;
 }
 
 strong {
@@ -132,6 +137,7 @@ footer {
   display: inline-block;
 }
 
+
 #feature .btn {
   display: block;
   width: 200px;
@@ -195,13 +201,11 @@ footer .copyright-text {
   padding-top: 10px;
 }
 
-footer a {
-  color: #fff;
-}
-
-footer a:hover {
-  color: rgb(102, 224, 255);
-}
+#feature div {
+    width: 30%;
+    margin-left: 3%;
+    display: inline-block;
+  }
 
 .svgcolor-light {
   position: relative;
@@ -221,3 +225,4 @@ img{
 	line-height: 1;
 	display:inline-block;
 }
+

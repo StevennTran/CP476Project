@@ -21,7 +21,12 @@
       document.getElementById("leftMenu").style.display = "none";
     }
 
-
+    function response() {
+      document.getElementById("fname").value = "";
+      document.getElementById("lname").value = "";
+      document.getElementById("subject").value = "";
+      document.getElementById("response").style.display = "block";
+    }
 
   </script>
 
@@ -96,7 +101,7 @@
   <section id="contact">
 
     <div class="container">
-      <form action="action_page.php">
+      <form>
 
         <label for="fname" font='Monaco'>First Name</label>
         <br>
@@ -118,9 +123,9 @@
         <br>
         <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
         <br>
-        <input type="submit" value="Submit" class="btn">
+        <input type="button" value="Submit" class="btn" onclick="response()">
         <br /><br />
-        <div id="response" style="display: block;color: green;" hidden="true">Thanks, we'll get back to you soon! :)
+        <div id="response" style="display: none;color: green;">Thanks, we'll get back to you soon! :)
         </div>
 
       </form>

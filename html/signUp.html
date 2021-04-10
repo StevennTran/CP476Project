@@ -5,11 +5,18 @@
     <title>Welcome</title>
     <link rel="stylesheet" type="text/css" href="css/sign.css">
 
+    <style>
+        #errorMsg {
+            text-align: center;
+            color: rgb(243, 39, 39);
+        }
+    </style>
+
     <script>
         function checkValid() {
             var sUsername = document.getElementById("Uname").value;
             var sPassword = document.getElementById("Pass").value;
-            var err = document.getElementById("log");
+            var err = document.getElementById("errorMsg");
 
             var xhttp = new XMLHttpRequest();
 
@@ -25,7 +32,7 @@
                             var temp = xhttp.responseText.split(",");
                             localStorage.setItem("user", temp[0]);
                             localStorage.setItem("role", temp[1]);
-                            location.href = 'login.html';
+                            location.href = 'myindex.html';
                         }
                     }
                 }
@@ -57,7 +64,7 @@
             <span>Remember me</span>
             <br><br>
         </form>
-        <div id="log"></div>
+        <div id="errorMsg"></div>
     </div>
 </body>
 

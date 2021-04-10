@@ -27,8 +27,8 @@
 
     <script>
         function checkValid() {
-            var sUsername = document.getElementById("username").value;
-            var sPassword = document.getElementById("password").value;
+            var sUsername = document.getElementById("Uname").value;
+            var sPassword = document.getElementById("Pass").value;
             var err = document.getElementById("errorMsg");
 
             var xhttp = new XMLHttpRequest();
@@ -40,7 +40,7 @@
                     if (xhttp.status == 200) {
                         if (xhttp.responseText == "FALSE") {
                             err.innerHTML = "Incorrect Credentials, please try again";
-                            err.innerHTML = xhttp.responseText;
+                            // err.innerHTML = xhttp.responseText;
                         } else {
                             // This is jQuery
                             var temp = xhttp.responseText.split(",");
@@ -58,22 +58,28 @@
 </head>
 
 <body>
-    <h1>Welcome to the Login Page</h1>
-    <h3>Please sign in to get started</h3>
-
-    <table class="center">
-        <tr>
-            <td>Username: </td>
-            <td><input type="text" name="username" id="username" value="" size="20"></td>
-        </tr>
-        <tr>
-            <td>Password: </td>
-            <td><input type="password" name="password" id="password" value="" size="20"></td>
-        </tr>
-    </table>
-    <p><input type="button" value="Login" onclick="checkValid()"></p>
-    <div id="errorMsg"></div>
-    <p><button id="button"><a href="signUp.html">New? Sign Up!</a></button></p>
+    <h2>Welcome to the Login Page</h2>
+    <h2>Please sign in to get started</h2><br>
+    <div class="login">
+        <form id="login">
+            <label><b>Username:
+                </b>
+            </label>
+            <input type="text" name="Username" id="Uname" placeholder="Username">
+            <br><br>
+            <label><b>Password:
+                </b>
+            </label>
+            <input type="Password" name="Password" id="Pass" placeholder="Password">
+            <br><br>
+            <input type="button" name="signup" id="signup" value="Sign up Here" onclick="checkValid()">
+            <br><br>
+            <input type="checkbox" id="check">
+            <span>Remember me</span>
+            <br><br>
+        </form>
+        <div id="errorMsg"></div>
+    </div>
 </body>
 
 </html>

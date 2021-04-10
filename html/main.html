@@ -1,134 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <title>Book store </title>
+	<title>Book store </title>
 
-    <link rel="stylesheet" href="css/symbol.css">
-    <link rel="stylesheet" href="css/style.css">
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="css/style.css">
 
-
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
-
 <body>
 
 
-    <!-- welcome -->
-    <section id="home">
-        <div class="home">
-            <h1 data-wow-delay="0.4s">Welcome to bookstore!</h1>
-            <h3 class="wow fadeInUp" data-wow-delay="0.6s">Find all your favourite <strong>books</strong> through a
-                <strong>click</strong> of a button!
-            </h3>
-            <a href="#about" class="btn" data-wow-delay="0.8s">Log in!</a>
-            <a href="#about" class="btn" data-wow-delay="0.8s">Sign up!</a>
-        </div>
+<!-- welcome -->
+<section id="home">
+				<div class="home">
+					<h1 data-wow-delay="0.4s">Welcome to bookstore!</h1>
+          			<h3 class="wow fadeInUp" data-wow-delay="0.6s">Find all your favourite <strong>books</strong> through a <strong>click</strong> of a button!</h3>
+          			<a href="#about" class="btn" data-wow-delay="0.8s">Log in!</a>
+                <a href="#about" class="btn" data-wow-delay="0.8s">Sign up!</a>
+				</div>
 
-    </section>
+</section>
 
-    <!-- about -->
-    <section id="about">
+<!-- about -->
+<section id="about">
+    
+					<div class="section-title">
+						<h1 class="wow fadeIn" data-wow-delay="0.2s">our company</h1>
+						<h3 class="wow fadeInUp" data-wow-delay="0.4s">Bookstore is based in Toronto</h3>
+					</div>
+					<div class="wow fadeInUp" data-wow-delay="0.6s">
+						<p>We are three students at the university of Laurier who have a passion for reading and books. When Covid-19 hit, we were all stuck inside this was the time we would read our books.</p>
+						<p>However we found it hard to find any good book recommendations online with fellow book lovers, so we came up the idea to create a site where we dicuss our favoruite books and buy new ones with a click of the button!</p>
+					</div>
 
-        <div class="section-title">
-            <h1 class="wow fadeIn" data-wow-delay="0.2s">our company</h1>
-            <h3 class="wow fadeInUp" data-wow-delay="0.4s">Bookstore is based in Toronto</h3>
-        </div>
-        <div class="wow fadeInUp" data-wow-delay="0.6s">
-            <p>We are three students at the university of Laurier who have a passion for reading and books. When
-                Covid-19 hit, we were all stuck inside this was the time we would read our books.</p>
-            <p>However we found it hard to find any good book recommendations online with fellow book lovers, so we came
-                up the idea to create a site where we dicuss our favoruite books and buy new ones with a click of the
-                button!</p>
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- feature -->
-    <section id="feature">
-
-        <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1"
-            xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
-            <path d="M0 0 L50 100 L100 0 Z"></path>
-        </svg>
+<!-- feature -->
+<section id="feature">
+      
+      <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
+        <path d="M0 0 L50 100 L100 0 Z"></path>
+      </svg>
 
         <div data-wow-delay="0.4s">
-            <i class="icon icon-laptop"></i>
+          <img src="../images/laptop.png " weight="250" height="250"></img>
             <h2>Chat!</h2>
             <p>Chat with book lovers around the world and get new book ideas!</p>
         </div>
 
         <div data-wow-delay="0.8s">
-            <i class="icon icon-refresh"></i>
+            <img src="../images/refresh.png" weight="250" height="250"></img>
             <h2>Recycle books</h2>
             <p>send in your book back and get sent another one with our program!</p>
         </div>
 
         <div data-wow-delay="1.2s">
-            <i class="icon icon-chat"></i>
-            <h2>Support</h2>
+          <img src="../images/chat.png" weight="250" height="250"></img>
+            <h2 >Support</h2>
             <p>email us with any questions!</p>
         </div>
         <a href="#contact" class="btn">Talk to us</a>
 
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section id="contact">
+
+			<div class="col-md-offset-2 col-md-8 col-sm-12">
+				<div class="section-title">
+          <h1>Contact Form</h1>
         </div>
+        <form id="contact-form" method="post" action="#"></form>
+          <input type="text" id="input-name" placeholder="Name">
+          <input type="email" id="input-email" placeholder="Email address">
+          <input type="text" id="input-subject" placeholder="Subject">
         </div>
-    </section>
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+          <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
+        </div>  
+        <input type="submit" value="Submit" id="input-submit">
 
-    <!-- contact -->
-    <section id="contact">
-        <div class="container">
-            <div class="row">
+					</form>
+	
+</section>
 
-                <div class="col-md-offset-2 col-md-8 col-sm-12">
-                    <div class="section-title">
-                        <h1>Contact Form</h1>
-                    </div>
-                    <form id="contact-form" method="post" action="#"></form>
-                    <input type="text" id="input-name" placeholder="Name">
-                    <input type="email" id="input-email" placeholder="Email address">
-                    <input type="text" id="input-subject" placeholder="Subject">
-                </div>
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-                    <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
-                </div>
-                <input type="submit" value="Submit" id="input-submit">
+<!-- footer -->
+<footer>
 
-                </form>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- footer -->
-    <footer>
-
-        <svg class="svgcolor-light" preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%"
-            version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0 L50 100 L100 0 Z"></path>
-        </svg>
+      <svg class="svgcolor-light" preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L50 100 L100 0 Z"></path>
+      </svg>
 
         <h2>Bookstore</h2>
-        <div data-wow-delay="0.3s">
-            <p>blah blah blah about us</p>
-            <p class="copyright-text">Copyright &copy; 2021 the comp sci kids <br></p>
-        </div>
+          <div data-wow-delay="0.3s">
+             <p>blah blah blah about us</p>
+             <p class="copyright-text">Copyright &copy; 2021 the comp sci kids <br></p>
+          </div>
 
         <h2>Our office</h2>
         <p data-wow-delay="0.6s">
-            123 queen street<br>
-            toronto postal code <br>
-            Toronto, ON, Canada
+          123 queen street<br>
+          toronto postal code <br>
+          Toronto, ON, Canada
         </p>
 
 
-    </footer>
+</footer>
 
 </body>
-
 </html>

@@ -68,8 +68,14 @@
         }
 
         function loadComment() {
+
+            document.body.style.backgroundImage = "url('../images/backdrop2.png')";
+
             var commentSection = document.getElementById("showComments");
             var username = localStorage.getItem("user");
+
+            var myName = document.getElementById("name");
+            myName.innerHTML = username + "'s profile";
 
             var xhttp = new XMLHttpRequest();
             xhttp.responseType = 'text';
@@ -104,13 +110,18 @@
 </head>
 
 <body onload="loadComment()">
-    <h1>Profile</h1>
+    <h1>
+        <div id="name"></div>
+    </h1>
     <table>
         <tr>
             <td>Change Username: </td>
             <td><input style="width: 200px;"></td>
         </tr>
     </table>
+    <br />
+    <h2><strong>My comments</stong>
+    </h2>
     <div class="informationDiv" id="showComments"></div>
 </body>
 

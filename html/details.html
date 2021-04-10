@@ -19,24 +19,26 @@
 
         body {
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-             background-size: 10000% 10000%;
-             animation: gradient 15s ease infinite;
+            background-size: 10000% 10000%;
+            animation: gradient 15s ease infinite;
         }
 
         @keyframes gradient {
             0% {
-            background-position: 0% 50%;
+                background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
-            }
+        }
 
         .informationDiv {
-            width: 20%;
+            width: 25%;
             background-color: rgba(255, 255, 255, 0.1);
             /* background-color: rebeccapurple; */
             margin: 0 auto;
@@ -185,6 +187,40 @@
 
             }
 
+            var username = localStorage.getItem("user");
+            var uName = document.getElementById("myName");
+            uName.innerHTML = username;
+
+            var title = localStorage.getItem("title" + bookNumStr);
+            title.replace(" ", "+?+?");
+
+            var bName = document.getElementById("bookName");
+            bName.innerHTML = title;
+
+            var allUsers = document.getElementById("who");
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("get", "../php/getUsers.php", true);
+            xhttp.responseType = 'text';
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        if (xhttp.responseText == "NO USERS") {
+
+                        } else {
+                            var usersList = xhttp.responseText.split("|");
+                            for (var i = 1; i < usersList.length; i++) {
+                                var user = usersList[i];
+                                var el = document.createElement("option");
+                                el.textContent = user;
+                                el.value = user;
+                                allUsers.appendChild(el);
+                            }
+                        }
+                    }
+                }
+            };
+            xhttp.send();
+
             // Comment Section
             loadComment();
 
@@ -267,6 +303,11 @@
 
         }
 
+        function sendRecommend() {
+
+        }
+
+
     </script>
 </head>
 
@@ -284,15 +325,7 @@
         <a href="details.html" class="w3-bar-item w3-button">Recent Search</a>
     </div>
 
-    <!-- <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;widthL 500px" id="rightMenu">
-            <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-        </div> -->
-
     <button class="w3-button w3-teal w3-xlarge w3-left" onclick="openLeftMenu()">&#9776;</button>
-    <!-- <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button> -->
 
 
     <div id="image_holder" style="display:inline-block; vertical-align:top;margin-right: 20px;">
@@ -318,10 +351,36 @@
         <div id="publisher" style="margin-left:15px;font-size: 18px">Testing</div>
         <br />
         <div id="description" style="margin-left:15px;font-size: 18pt;">Testing</div>
-        <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;color: goldenrod;">Recommend
+        <button id="postComment" style="display: block;margin-left: auto;margin-right: auto;color: goldenrod;"
+            onclick="sendRecommend()">Recommend
             Book</button>
     </div>
     <br />
+
+    <div class="informationDiv">
+        <form action="../php/recommend.php">
+            <table>
+                <tr>
+                    <td><strong>User Name: </strong></td>
+                    <td id="myName" name=""></td>
+                </tr>
+                <tr>
+                    <td><strong>Book Recommend: </strong></td>
+                    <td id="bookName"></td>
+                </tr>
+                <tr>
+                    <td><strong>Who to recommend to:</strong></td>
+                </tr>
+            </table>
+            <td><select style="width: 300px;display: block;margin-left: auto;margin-right: auto;" id="who"></select>
+            </td>
+            <input type="button" id="rec" value="Send recommendation"
+                style="display: block;margin-left: auto;margin-right: auto;" onclick="sendRecommend()">
+        </form>
+
+
+
+    </div>
 
     <div style="display:block;background-color: rgba(255, 255, 255, 0.9);width: 80%;height: 620px;margin: 0 auto;">
         <p style="color: red;text-decoration: underline;font-size: 24pt;"><strong>Book Talk</strong></p>

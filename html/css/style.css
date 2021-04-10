@@ -1,11 +1,11 @@
-body
-	{
-		background: #ffffff;
-   font-family: 'Rajdhani', sans-serif;
-    font-weight: 400;
-	}
+body {
+  background: #ffffff;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+}
 
-html,body {
+html,
+body {
   width: 100%;
   overflow-x: hidden;
 }
@@ -14,7 +14,9 @@ html {
   font-size: 100%;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
   font-weight: 500;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
@@ -73,7 +75,6 @@ footer {
   text-align: center;
 }
 
-
 /* home section */
 #home {
   display: flex;
@@ -86,30 +87,29 @@ footer {
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-
 #home .btn {
-    background: transparent;
-    border: 3px solid #ffffff;
-    border-radius: 0px;
-    color: #ffffff;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 14px 36px;
-    margin-top: 42px;
-    margin-right: 16px;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+  background: transparent;
+  border: 3px solid #ffffff;
+  border-radius: 0px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 14px 36px;
+  margin-top: 42px;
+  margin-right: 16px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 #home .btn:hover {
@@ -118,16 +118,14 @@ footer {
   border-color: transparent;
 }
 
-
 /* about section */
 #about h3 {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
 #about .about-thumb {
   padding-top: 10px;
 }
-
 
 /* feature section */
 #feature {
@@ -144,19 +142,28 @@ footer {
   color: rgb(27, 26, 26);
 }
 
+#feature div {
+  width: 30%;
+  margin-left: 3%;
+  display: inline-block;
+}
+
 #feature .btn {
-    background: transparent;
-    border: 3px solid #ffffff;
-    border-radius: 0px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 14px 36px;
-    margin-top: 62px;
-    margin-right: 16px;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+  display: block;
+  width: 200px;
+  background: transparent;
+  border: 3px solid #ffffff;
+  border-radius: 0px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 14px 36px;
+  margin-top: 62px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 #feature .btn:hover {
@@ -176,9 +183,11 @@ footer {
   transition: all 0.4s ease-in-out;
 }
 
-#contact input {height: 55px;}
+#contact input {
+  height: 55px;
+}
 
-#contact input[type='submit'] {
+#contact input[type="submit"] {
   background: #242424;
   border: none;
   color: #ffffff;
@@ -189,7 +198,7 @@ footer {
   margin-top: 10px;
 }
 
-#contact input[type='submit']:hover {
+#contact input[type="submit"]:hover {
   background: #1a9bf1;
 }
 
@@ -203,11 +212,11 @@ footer .copyright-text {
 }
 
 footer a {
-	color: #fff;
+  color: #fff;
 }
 
 footer a:hover {
-	color: rgb(102, 224, 255);
+  color: rgb(102, 224, 255);
 }
 
 .svgcolor-light {
@@ -219,4 +228,3 @@ footer a:hover {
   stroke: white;
   stroke-width: 0;
 }
-

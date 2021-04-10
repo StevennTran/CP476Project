@@ -16,6 +16,53 @@
     <script>
         var key = "AIzaSyDWvmjDzvFJUxU6J8ktMP9HQIuUuXchWLg";
 
+        function callNextBook(query, bookTable) {
+            var xhttp2 = new XMLHttpRequest();
+            xhttp2.responseType = 'json';
+            xhttp2.open("get", query, true);
+
+            xhttp2.onreadystatechange = function () {
+                if (xhttp2.readyState == 4) {
+                    if (xhttp2.status == 200) {
+                        var stringified = JSON.stringify(xhttp2.response);
+                        var parsedObj = JSON.parse(stringified);
+
+                        // Get image test
+                        var img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
+                        // console.log(xhtt);
+                        console.log(parsedObj.volumeInfo);
+                        if (parsedObj.volumeInfo.imageLinks === undefined) {
+                            img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
+                        }
+                        else {
+                            img = JSON.stringify(parsedObj.volumeInfo.imageLinks.thumbnail).replace('"', "");
+                        }
+                        var thumbnail = document.createElement("img");
+                        thumbnail.src = img;
+                        var tr = document.createElement("tr");
+                        var td = document.createElement("td");
+                        td.appendChild(thumbnail);
+                        tr.append(td)
+                        bookTable.appendChild(tr);
+
+
+                        // Add titles and stuff
+                        // var title = JSON.stringify(parsedObj.volumeInfo.title).replaceAll('"', "");
+                        // var author = "N/A";
+                        // if (parsedObj.volumeInfo.authors != undefined) {
+                        //     var author = JSON.stringify(parsedObj.volumeInfo.authors[0]).replaceAll('"', "");
+                        // }
+                        // td = document.createElement("td");
+                        // td.appendChild(document.createTextNode(title + " - " + author));
+                        // tr.appendChild(td);
+                        // bookTable.appendChild(tr);
+                    }
+                }
+            }
+            xhttp2.send();
+            return bookTable;
+        }
+
         function loadComment() {
             var commentSection = document.getElementById("showComments");
             var username = localStorage.getItem("user");
@@ -34,51 +81,13 @@
 
 
                             var temp = commentsList[i].split(",")
-                            console.log(temp);
-                            var xhttp2 = new XMLHttpRequest();
-                            xhttp2.responseType = 'json';
+                            // console.log(temp);
                             var query = "https://www.googleapis.com/books/v1/volumes/" + temp[0] + "?key=" + key;
-                            xhttp2.open("get", query, true);
-
-                            xhttp2.onreadystatechange = function () {
-                                if (xhttp2.readyState == 4) {
-                                    if (xhttp2.status == 200) {
-                                        var stringified = JSON.stringify(xhttp2.response);
-                                        var parsedObj = JSON.parse(stringified);
-
-                                        // Get image test
-                                        var img;
-                                        // console.log(xhtt);
-                                        console.log(parsedObj.volumeInfo);
-                                        if (parsedObj.volumeInfo.imageLinks === undefined) {
-                                            img = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/128px-No_picture_available.png";
-                                        }
-                                        else {
-                                            img = JSON.stringify(parsedObj.volumeInfo.imageLinks.thumbnail).replace('"', "");
-                                        }
-                                        var thumbnail = document.createElement("img");
-                                        thumbnail.src = img;
-                                        var tr = document.createElement("tr");
-                                        var td = document.createElement("td");
-                                        td.appendChild(thumbnail);
-                                        tr.append(td)
-                                        bookTable.appendChild(tr);
-
-
-                                        // Add titles and stuff
-                                        var title = JSON.stringify(parsedObj.volumeInfo.title).replaceAll('"', "");
-                                        var author = "N/A";
-                                        if (parsedObj.volumeInfo.authors != undefined) {
-                                            var author = JSON.stringify(parsedObj.volumeInfo.authors[0]).replaceAll('"', "");
-                                        }
-                                        td = document.createElement("td");
-                                        td.appendChild(document.createTextNode(title + " - " + author));
-                                        tr.appendChild(td);
-                                        bookTable.appendChild(tr);
-                                    }
-                                }
-                            }
-                            xhttp2.send();
+                            bookTable = callNextBook(query, bookTable);
+                            td = document.createElement("td");
+                            td.appendChild(document.createTextNode(title + " - " + author));
+                            tr.appendChild(td);
+                            bookTable.appendChild(tr);
                         }
                         commentSection.appendChild(bookTable);
                     }
